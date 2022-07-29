@@ -1,6 +1,11 @@
 body {
-    background-color:#66AED9;
+    background-color:#84c9f2;
 }
+
+h1, h2 {
+    color: rgb(0, 123, 102);
+}
+
 p {
     color:blue;
 }
