@@ -1,6 +1,6 @@
 body {
     width: fit-content;
-    background-color:#84c9f2;
+    background-color:#ceb985;
 }
 
 h1, h2 {
@@ -10,8 +10,7 @@ h1, h2 {
 }
 
 p {
-    color:blue;
-    
+    color:rgb(76, 76, 102);
 }
 
 .description {
