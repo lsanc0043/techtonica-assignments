@@ -1,0 +1,31 @@
+body {
+    width: fit-content;
+    background-color:#ceb985;
+}
+
+h1, h2 {
+    color: rgb(0, 123, 102);
+    font-family: 'Lobster', cursive;
+    font-size: 225%
+}
+
+p {
+    color:rgb(76, 76, 102);
+}
+
+.description {
+    inline-size: 600px;
+}
+
+.left {
+    display: inline-block;
+    margin-top: 20px;
+    width: 600px;
+}
+
+.right {
+    float: right;
+    width: 600px;
+    margin-left: 30px;
+    margin-top: 0px;
+}
