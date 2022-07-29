@@ -4,6 +4,8 @@ body {
 
 h1, h2 {
     color: rgb(0, 123, 102);
+    font-family: 'Lobster', cursive;
+    font-size: 225%
 }
 
 p {
