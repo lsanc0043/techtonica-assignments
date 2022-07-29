@@ -1,4 +1,5 @@
 body {
+    width: fit-content;
     background-color:#84c9f2;
 }
 
@@ -10,4 +11,22 @@ h1, h2 {
 
 p {
     color:blue;
+    
+}
+
+.description {
+    inline-size: 600px;
+}
+
+.left {
+    display: inline-block;
+    margin-top: 20px;
+    width: 600px;
+}
+
+.right {
+    float: right;
+    width: 600px;
+    margin-left: 30px;
+    margin-top: 0px;
 }
