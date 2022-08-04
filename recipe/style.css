@@ -1,31 +1,121 @@
 body {
-    width: fit-content;
-    background-color:#ceb985;
+    background-color:#bcdbe8;
 }
 
 h1, h2 {
-    color: rgb(0, 123, 102);
-    font-family: 'Lobster', cursive;
+    font-family: 'Playfair-Display';
     font-size: 225%
 }
 
-p {
-    color:rgb(76, 76, 102);
+#title {
+    color: rgb(230, 249, 224);
+    background-color: rgb(71, 129, 215);
+    border-radius: 10px;
+    text-align: center;
 }
 
 .description {
-    inline-size: 600px;
+    background-color: #bcdbe8;
+    width:600px;
+    display: block;
+    padding: 1%;
+    border-radius: 10px;
+    margin:0px;
+    margin-top: 10px;
+    margin-bottom:10px;
+    border: 3px solid rgb(71, 129, 215);
 }
 
-.left {
-    display: inline-block;
-    margin-top: 20px;
-    width: 600px;
+
+
+#image {
+    width: fit-content;
+    text-align: center;
+    padding: 1%;
+    border-radius: 10px;
+    border:3px solid rgb(71, 129, 215);
 }
 
-.right {
-    float: right;
-    width: 600px;
-    margin-left: 30px;
-    margin-top: 0px;
+#navBar {
+    text-align: center;
+    background-color: rgba(110, 140, 185, 0.544);
+    border-radius: 10px;
+    border: 3px solid rgb(37, 36, 36);
+    font-size: 125%;
+}
+
+  /* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (max-width: 600px) {
+    body {
+        width:auto;
+        font-size: 100%;
+    }
+    .description {
+        width:auto;
+    }
+    #image {
+        width:auto;
+    }
+    #pic {
+        width:50%;
+        height:50%;
+    }
+}
+  
+  /* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (max-width: 768px) {
+    body {
+        width:auto;
+        font-size: 100%;
+    }
+    .description {
+        width:auto;
+    }
+    #image {
+        width:auto;
+    }
+    #pic {
+        width:50%;
+        height:50%;
+    }
+} 
+  
+  /* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    body {
+        width:auto;
+        font-size: 100%;
+    }
+    .description {
+        width:auto;
+    }
+    #image {
+        width:auto;
+    }
+    #pic {
+        width:50%;
+        height:50%;
+    }
+} 
+  
+  /* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    body {
+        width:auto;
+        font-size: 100%;
+    }
+    .description {
+        width:auto;
+    }
+    #image {
+        width:auto;
+    }
+    #pic {
+        width:50%;
+        height:50%;
+    }
+}
+
+#Ingredients {
+    list-style: none;
 }
