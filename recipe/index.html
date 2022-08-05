@@ -5,77 +5,85 @@
         <link rel="stylesheet" type="text/css" href="style.css" />
     </head>
     <body>
+        <button id="bttn">Back to Top</button>
         <div class="top">
-            <!--Title and Blurb go here-->
-            <h1 id="title">Dad's Wonton Soup Recipe</h1>
-            <!--Blurb-->
-            
+            <div>
+                <!--Title and Blurb go here-->
+                <h1 class="title">Dad's Wonton Soup Recipe</h1>
+            </div>
+
             <div id="navBar">
-                <h3 id="nav"></h2>
             </div>
         </div>
-        
-        <div class="blurb">
-            <p class = "description">My dad has been a chef for over 50 years. During that time, he has come
-            up with a variety of recipes. I've always wanted to recreate them, but
-            since he is experienced, most of the measurements are abstract and
-            based solely off of, "Oh, that looks about right.". He's been trying to
-            find tangible measurements for the ingredients so that others can make
-            the masterpieces that he has curated over the years. The wonton soup that
-            he makes is cooked/seasoned to perfection and never fails to amaze me.
-            </p>
+        <div class="middle">
+            <div class="column left">
+                <!--Image and Ingredient List go here-->
+                <div id="image">
+                    <!--Image-->
+                    <img id="pic" src="https://takestwoeggs.com/wp-content/uploads/2021/05/Easy-Homemade-Wonton-soup-takestwoeggs-sq.jpg" alt="Picture of Wonton Soup">
+                    <p>Photo credit: <a href="https://takestwoeggs.com/homemade-wonton-soup/" target="_blank">Takes Two Eggs</a></p>
+                </div>
+            
+                <div id="StepstoMake">
+                    <!--Steps/Instructions-->
+                    <h2 class="title">Steps to Make</h2>
+                    <h2 class="steps">Marinate the ground meat</h2>
+                    <ol>
+                        <li>Place ground meat to a large bowl</li>
+                        <li>Add soy sauce, dark soy sauce, corn starch, sugar, salt, and white pepper</li>
+                        <li>Knead and mix by hand while adding water</li>
+                        <li>Add mushrooms or green onions and thoroughly mix to distribute</li>
+                    </ol>
+                    <h2 class="steps">Wrapping the wonton</h2>
+                    <ol>
+                        <li>Use a small spoon to scoop the ground meat mixture</li>
+                        <li>Place the meal in the center of the wonton/dumpling wrapper</li>
+                        <li>Fold one corner diagonally towards the opposite corner</li>
+                        <li>Pinch the sides in to keep the meat secure (optional: use water to make it stick)</li>
+                    </ol>
+                    <h2 class="steps">Making the soup</h2>
+                    <ol>
+                        <li>Heat a large pot of water until it boils</li>
+                        <li>Drop the wontons in the boiling water</li>
+                        <li>Add baby spinach or napa cabbage to flavor the soup</li>
+                        <li>Wait until the wontons begin to float instead of sticking to the bottom</li>
+                        <li>Scoop and serve!</li>
+                    </ol>
+                </div>
+            </div>
+            
+            <div class="column right">
+                <div id="blurb">
+                    <h2 class="title">What's the story?</h2>
+                    <p id="description">My dad has been a chef for over 50 years. During that time, he has come
+                    up with a variety of recipes. I've always wanted to recreate them, but
+                    since he is experienced, most of the measurements are abstract and
+                    based solely off of, "Oh, that looks about right.". He's been trying to
+                    find tangible measurements for the ingredients so that others can make
+                    the masterpieces that he has curated over the years. The wonton soup that
+                    he makes is cooked/seasoned to perfection and never fails to amaze me.
+                    </p>
+                </div>
+
+                
+                <div id="Ingredients">
+                    <!--Unordered List of Ingredients-->
+                    <h2 class="title">Ingredients</h2>
+    
+                </div>  
+            </div>              
         </div>
    
-        <div class="left">
-            <!--Image and Ingredient List go here-->
-            <div id="image">
-                <!--Image-->
-                <img id="pic" src="https://takestwoeggs.com/wp-content/uploads/2021/05/Easy-Homemade-Wonton-soup-takestwoeggs-sq.jpg" width="600" height="600"/>
-                <p>Photo credit: <a href="https://takestwoeggs.com/homemade-wonton-soup/" target="_blank">Takes Two Eggs</a></p>
-            </div>
-        
-            <div id="Ingredients">
-                <!--Unordered List of Ingredients-->
-                <h2>Ingredients</h2>
 
-            </div>
-        </div>
-        
-        <div class="right">
-            <!--Steps/Instructions and External Links go here-->
-            <div id="Steps to Make">
-                <!--Steps/Instructions-->
-                <h2>Marinate the ground meat</h2>
-                <ol>
-                    <li>Place ground meat to a large bowl</li>
-                    <li>Add soy sauce, dark soy sauce, corn starch, sugar, salt, and white pepper</li>
-                    <li>Knead and mix by hand while adding water</li>
-                    <li>Add mushrooms or green onions and thoroughly mix to distribute</li>
-                </ol>
-                <h2>Wrapping the wonton</h2>
-                <ol id="two">
-                    <li>Use a small spoon to scoop the ground meat mixture</li>
-                    <li>Place the meal in the center of the wonton/dumpling wrapper</li>
-                    <li>Fold one corner diagonally towards the opposite corner</li>
-                    <li>Pinch the sides in to keep the meat secure (optional: use water to make it stick)</li>
-                </ol>
-                <h2>Making the soup</h2>
-                <ol>
-                    <li>Heat a large pot of water until it boils</li>
-                    <li>Drop the wontons in the boiling water</li>
-                    <li>Add baby spinach or napa cabbage to flavor the soup</li>
-                    <li>Wait until the wontons begin to float instead of sticking to the bottom</li>
-                    <li>Scoop and serve!</li>
-                </ol>
-            </div>
-        
-            <div id="Links to Other Wonton Soup Recipes">
+        <div class="bottom">
+            <div id="LinkstoOtherWontonSoupRecipes">
                 <!--External Links-->
-                <h2>Other Wonton Soup Recipes to Try</h2>
+                <h2 class="title">Other Wonton Soup Recipes to Try</h2>
                 <p><a href="https://www.skinnytaste.com/wonton-soup/" target="_blank">Gina's Wonton Soup</a></p>
                 <p><a href="https://lovefoodies.com/chinese-wonton/" target="_blank">Mary's Chinese Wontons</a></p>
             </div>
         </div>
+
         <script src="script.js"></script>
     </body>
 </html>

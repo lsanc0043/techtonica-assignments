@@ -7,33 +7,19 @@ h1, h2 {
     font-size: 225%
 }
 
-#title {
+.title {
     color: rgb(230, 249, 224);
     background-color: rgb(71, 129, 215);
     border-radius: 10px;
     text-align: center;
 }
 
-.description {
-    background-color: #bcdbe8;
+#pic {
     width:600px;
-    display: block;
-    padding: 1%;
-    border-radius: 10px;
-    margin:0px;
-    margin-top: 10px;
-    margin-bottom:10px;
-    border: 3px solid rgb(71, 129, 215);
-}
-
-
-
-#image {
-    width: fit-content;
+    height:600px;
     text-align: center;
+    margin-top:10px;
     padding: 1%;
-    border-radius: 10px;
-    border:3px solid rgb(71, 129, 215);
 }
 
 #navBar {
@@ -44,78 +30,80 @@ h1, h2 {
     font-size: 125%;
 }
 
-  /* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (max-width: 600px) {
-    body {
-        width:auto;
-        font-size: 100%;
-    }
-    .description {
-        width:auto;
-    }
-    #image {
-        width:auto;
-    }
-    #pic {
-        width:50%;
-        height:50%;
-    }
-}
-  
-  /* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (max-width: 768px) {
-    body {
-        width:auto;
-        font-size: 100%;
-    }
-    .description {
-        width:auto;
-    }
-    #image {
-        width:auto;
-    }
-    #pic {
-        width:50%;
-        height:50%;
-    }
-} 
-  
-  /* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (min-width: 992px) {
-    body {
-        width:auto;
-        font-size: 100%;
-    }
-    .description {
-        width:auto;
-    }
-    #image {
-        width:auto;
-    }
-    #pic {
-        width:50%;
-        height:50%;
-    }
-} 
-  
-  /* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (min-width: 1200px) {
-    body {
-        width:auto;
-        font-size: 100%;
-    }
-    .description {
-        width:auto;
-    }
-    #image {
-        width:auto;
-    }
-    #pic {
-        width:50%;
-        height:50%;
-    }
+label {
+    font-size: 100%;
 }
 
 #Ingredients {
     list-style: none;
+}
+
+#StepstoMake {
+    width:600px;
+}
+
+#description {
+    display:flex;
+    background-color: #bcdbe8;
+    padding: 1%;
+    border-radius: 10px;
+    margin:0px;
+    margin-top: 10px;
+    margin-bottom:10px;
+    border: 3px solid rgb(71, 129, 215);
+}
+
+.middle {
+  display: flex;
+}
+
+.column {
+    float: left;
+}
+
+.left {
+    width:45%;
+}
+
+.right {
+    width:55%;
+}
+
+
+#bttn {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    font-size: 18px;
+    color: black;
+    padding: 15px;
+    border-radius: 4px;
+}
+
+#bttn:hover {
+  background-color: #555;
+}
+
+
+@media only screen and (max-width: 1400px){
+    body {
+        width:auto;
+        font-size: 16px;
+    }
+    .description {
+        width:auto;
+    }
+    .top {
+        width:auto;
+    }
+    .left {
+        width:auto;
+    }
+    .right {
+        width:auto;
+    }
+    #pic {
+        width:90%;
+    }
 }

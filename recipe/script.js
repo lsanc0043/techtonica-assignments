@@ -46,10 +46,30 @@ for (let i = 0; i < navBarList.length; i++) {
         label.style.color = "black";
     })
     label.addEventListener('click', function() {
-        label.setAttribute('href', `#${navBarList[i]}`);
+        label.setAttribute('href', `#${navBarList[i].split(" ").join("")}`);
         label.style.textDecoration = "none";
     })
 
-    document.getElementById("nav").appendChild(label);
+    document.getElementById("navBar").appendChild(label);
 }
+
+const button = document.getElementById("bttn");
+
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    button.style.display = "block";
+  } else {
+    button.style.display = "none";
+  }
+}
+
+function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  }
+
+button.addEventListener('click', topFunction);
+
 
