@@ -46,6 +46,9 @@ for (let i = 0; i < navBarList.length; i++) {
     })
     label.addEventListener('click', function() {
         label.setAttribute('href', `#${navBarList[i].split(" ").join("")}`);
+        if (i === 3) {
+            label.setAttribute('href', "./aboutme.html");
+        }
         label.style.textDecoration = "none";
     })
 
@@ -70,5 +73,4 @@ function topFunction() {
   }
 
 button.addEventListener('click', topFunction);
-
 
