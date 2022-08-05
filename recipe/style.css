@@ -1,5 +1,6 @@
 body {
     background-color:#bcdbe8;
+    padding:0px 15px;
 }
 
 h1, h2 {
@@ -14,6 +15,12 @@ h1, h2 {
     text-align: center;
 }
 
+#image {
+    display:block;
+    margin:auto;
+    width:auto;
+}
+
 #pic {
     width:600px;
     height:600px;
@@ -24,6 +31,9 @@ h1, h2 {
 
 #navBar {
     text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
     background-color: rgba(110, 140, 185, 0.544);
     border-radius: 10px;
     border: 3px solid rgb(37, 36, 36);
@@ -38,9 +48,9 @@ label {
     list-style: none;
 }
 
-#StepstoMake {
+/* #StepstoMake {
     width:600px;
-}
+} */
 
 #description {
     display:flex;
@@ -55,19 +65,13 @@ label {
 
 .middle {
   display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
-.column {
+/* .column {
     float: left;
-}
-
-.left {
-    width:45%;
-}
-
-.right {
-    width:55%;
-}
+} */
 
 
 #bttn {
@@ -84,26 +88,30 @@ label {
 #bttn:hover {
   background-color: #555;
 }
-
-
-@media only screen and (max-width: 1400px){
-    body {
-        width:auto;
-        font-size: 16px;
-    }
-    .description {
-        width:auto;
-    }
-    .top {
-        width:auto;
-    }
+/* phone */
+@media only screen and (max-width: 600px) { 
     .left {
-        width:auto;
+        width: 100%;
+        margin:auto;
+        position:relative;
+        text-align:center;
     }
     .right {
         width:auto;
     }
-    #pic {
-        width:90%;
+}
+
+/* everything else */
+@media only screen and (min-width:600px){
+    body {
+        width:auto;
+        font-size: 16px;
+    }
+    .description, .top, .bottom {
+        width:auto;
+    }
+    .left, .right {
+        margin:0px;
+        width:50%
     }
 }

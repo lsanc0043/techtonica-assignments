@@ -38,7 +38,6 @@ for (let i = 0; i < ingredientList.length; i++) {
 for (let i = 0; i < navBarList.length; i++) {
     const label = document.createElement('a');
     label.innerText = navBarList[i];
-    label.style.margin = "0px 70px 0px";
     label.addEventListener('mouseover', function() {
         label.style.color = "white";
     })
