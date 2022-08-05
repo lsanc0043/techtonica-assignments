@@ -80,6 +80,16 @@ h1, h2 {
   background-color: #555;
 }
 
+#next, #prev {
+    display:inline-flex;
+    font-size: 15px;
+    padding: 4px;
+    border-radius: 4px;
+}
+
+#prev {
+    display: none;
+}
 .left {
     width:45%;
     text-align: center;

@@ -9,6 +9,16 @@ const navBarList = [
     "Ingredients", "Steps to Make", "Links to Other Wonton Soup Recipes", "About Me"
 ]
 
+const imageList = [
+    "https://takestwoeggs.com/wp-content/uploads/2021/05/Easy-Homemade-Wonton-soup-takestwoeggs-sq.jpg", 
+    "https://redhousespice.com/wp-content/uploads/2022/07/chinese-pork-wonton-in-soup.jpg"
+]
+
+const creditList = [
+    "https://takestwoeggs.com/homemade-wonton-soup/",
+    "https://redhousespice.com/pork-wonton-soup/"
+]
+
 function check(target, phrase) { // adds checkboxes
     const label = document.createElement('label');
     const input = document.createElement('input');
@@ -54,6 +64,29 @@ for (let i = 0; i < navBarList.length; i++) {
 
     document.getElementById("navBar").appendChild(label);
 }
+
+const currImg = document.getElementById("pic");
+const prev = document.getElementById("prev");
+const next = document.getElementById("next");
+const link = document.getElementById("link");
+next.addEventListener('click', function() {
+    currImg.setAttribute('src', imageList[1]);
+    if (currImg.getAttribute('src') !== imageList[0]) {
+        next.style.display = "none";
+        prev.style.display = "inline-flex";
+        link.setAttribute('href', creditList[1]);
+        link.innerText = "Red House Spice";
+    }
+})
+prev.addEventListener('click', function() {
+    currImg.setAttribute('src', imageList[0]);
+    if (currImg.getAttribute('src') !== imageList[1]) {
+        next.style.display = "inline-flex";
+        prev.style.display = "none";
+        link.setAttribute('href', creditList[0]);
+        link.innerText = "Takes Two Eggs";
+    }
+})
 
 const button = document.getElementById("bttn");
 
