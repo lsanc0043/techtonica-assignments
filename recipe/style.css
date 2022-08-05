@@ -22,9 +22,8 @@ h1, h2 {
 }
 
 #pic {
-    width:600px;
-    height:600px;
-    text-align: center;
+    width:80%;
+    height:80%;
     margin-top:10px;
     padding: 1%;
 }
@@ -40,17 +39,9 @@ h1, h2 {
     font-size: 125%;
 }
 
-label {
-    font-size: 100%;
-}
-
 #Ingredients {
     list-style: none;
 }
-
-/* #StepstoMake {
-    width:600px;
-} */
 
 #description {
     display:flex;
@@ -88,8 +79,18 @@ label {
 #bttn:hover {
   background-color: #555;
 }
+
+.left {
+    width:45%;
+    text-align: center;
+}
+
+.right{
+    width:55%;
+    float:left;
+}
 /* phone */
-@media only screen and (max-width: 600px) { 
+@media only screen and (max-width: 1200px) { 
     .left {
         width: 100%;
         margin:auto;
@@ -102,16 +103,18 @@ label {
 }
 
 /* everything else */
-@media only screen and (min-width:600px){
+@media only screen and (min-width:1200){
     body {
         width:auto;
         font-size: 16px;
     }
-    .description, .top, .bottom {
+    .description, .top {
         width:auto;
     }
-    .left, .right {
-        margin:0px;
-        width:50%
+    .left, .bottom {
+        width:45%;
+    }
+    #pic {
+        width:auto;
     }
 }
