@@ -1,31 +1,130 @@
 body {
-    width: fit-content;
-    background-color:#ceb985;
+    background-color:#bcdbe8;
+    padding:0px 15px;
 }
 
 h1, h2 {
-    color: rgb(0, 123, 102);
-    font-family: 'Lobster', cursive;
+    font-family: 'Playfair-Display';
     font-size: 225%
 }
 
-p {
-    color:rgb(76, 76, 102);
+.title {
+    color: rgb(230, 249, 224);
+    background-color: rgb(71, 129, 215);
+    border-radius: 10px;
+    text-align: center;
 }
 
-.description {
-    inline-size: 600px;
+#image {
+    display:block;
+    margin:auto;
+    width:auto;
 }
 
+#pic {
+    width:80%;
+    height:80%;
+    margin-top:10px;
+    padding: 1%;
+}
+
+#navBar {
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: rgba(110, 140, 185, 0.544);
+    border-radius: 10px;
+    border: 3px solid rgb(37, 36, 36);
+    font-size: 125%;
+}
+
+#Ingredients {
+    list-style: none;
+}
+
+#description {
+    display:flex;
+    background-color: #bcdbe8;
+    padding: 1%;
+    border-radius: 10px;
+    margin:0px;
+    margin-top: 10px;
+    margin-bottom:10px;
+    border: 3px solid rgb(71, 129, 215);
+}
+
+.middle {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+/* .column {
+    float: left;
+} */
+
+
+#bttn {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    font-size: 18px;
+    color: black;
+    padding: 15px;
+    border-radius: 4px;
+}
+
+#bttn:hover {
+  background-color: #555;
+}
+
+#next, #prev {
+    display:inline-flex;
+    font-size: 15px;
+    padding: 4px;
+    border-radius: 4px;
+}
+
+#prev {
+    display: none;
+}
 .left {
-    display: inline-block;
-    margin-top: 20px;
-    width: 600px;
+    width:45%;
+    text-align: center;
 }
 
-.right {
-    float: right;
-    width: 600px;
-    margin-left: 30px;
-    margin-top: 0px;
+.right{
+    width:55%;
+    float:left;
+}
+/* phone */
+@media only screen and (max-width: 1200px) { 
+    .left {
+        width: 100%;
+        margin:auto;
+        position:relative;
+        text-align:center;
+    }
+    .right {
+        width:auto;
+    }
+}
+
+/* everything else */
+@media only screen and (min-width:1200){
+    body {
+        width:auto;
+        font-size: 16px;
+    }
+    .description, .top {
+        width:auto;
+    }
+    .left, .bottom {
+        width:45%;
+    }
+    #pic {
+        width:auto;
+    }
 }
