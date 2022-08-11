@@ -1,38 +1,73 @@
 body {
-    background-color: rgb(238, 167, 167);
     line-height: 25px;
-    font-size: 125%;
+    margin:0px;
 }
 
-/* #navBar {
-    text-align: right;
-} */
+.top {
+    height: 100vh;
+    background-image: url('https://wallpaperaccess.com/full/518518.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: scroll;
+    position: relative;
+    align-content: center;
+    color: white;
+}
+
+#navBar {
+    color:white;
+    display: flex;
+    margin-right:20px;
+    justify-content: space-around;
+    font-size: 125%;
+    margin-bottom: 8%;
+    padding-top:1%;
+}
 
 #name {
     text-align: center;
-    font-size: 200%;
+    font-size: 250%;
 }
 
 #pfp {
+    vertical-align: middle;
     border-radius: 50%;
     width:20%;
     padding:1%;
-    vertical-align: middle;
 }
 
-ul {
-    margin-top: 2%;
-    margin-bottom: 2%;
-    list-style: none;
+#container {
+    display:flex;
+    justify-content: center;
 }
+
+#blurb {
+    font-family: 'Times New Roman', Times, serif;
+    width:fit-content; 
+    padding: 1%;
+    border-radius: 5%;
+    background-color: rgba(255, 255, 255, 0.53);
+    color: black;
+    border: solid;
+    font-size: 150%;
+}
+
+
+/* .tab {
+    display: inline-block;
+    margin-left: 40px;
+} */
 
 .middle {
     display: flex;
-    border-top: solid 1px;
+    color: black;
+    /* margin-top:30%; */
 }
 
 .left, .right {
+    background-color: aliceblue;
     width:50%;
+    border-radius: 5%;
     /* border:solid 1px; */
     padding:1%;
 }
