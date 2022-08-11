@@ -1,0 +1,38 @@
+body {
+    background-color: rgb(238, 167, 167);
+    line-height: 25px;
+    font-size: 125%;
+}
+
+/* #navBar {
+    text-align: right;
+} */
+
+#name {
+    text-align: center;
+    font-size: 200%;
+}
+
+#pfp {
+    border-radius: 50%;
+    width:20%;
+    padding:1%;
+    vertical-align: middle;
+}
+
+ul {
+    margin-top: 2%;
+    margin-bottom: 2%;
+    list-style: none;
+}
+
+.middle {
+    display: flex;
+    border-top: solid 1px;
+}
+
+.left, .right {
+    width:50%;
+    /* border:solid 1px; */
+    padding:1%;
+}
