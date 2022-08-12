@@ -52,18 +52,18 @@ window.addEventListener("load", typeSecond);
 
 // scroll to top button
 const button = document.getElementsByClassName("bttn");
-// window.onscroll = function() {scrollFunction()};
+window.onscroll = function() {scrollFunction()};
 
-// function scrollFunction() {
-//     const isBlockDisplay = (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20);
-//     button.style.display = (isBlockDisplay ? 'block' : 'none');
-// }
+function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+      button.style.display = "block";
+    } else {
+      button.style.display = "none";
+    }
+  }
 
 function topFunction() {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
 }
-  
-// document.getElementById("form").addEventListener('submit', function() {
-//     console.log(document.getElementById("person").value);
-// })
+

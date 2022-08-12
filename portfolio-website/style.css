@@ -5,7 +5,6 @@ body {
 }
 
 .bttn {
-    display: none;
     position: fixed;
     bottom: 20px;
     right: 30px;
@@ -120,11 +119,6 @@ body {
     color: red;
 }
 
-.contactForm #back {
-    position:fixed;
-    top: 175px;
-}
-
 .fa {
   padding: 20px;
   font-size: 30px;
@@ -163,9 +157,9 @@ body {
     }
 }
 @media only screen and (max-width: 599px){
-    /* .top { */
-        /* background-image: url("https://images.unsplash.com/photo-1542737579-ba0a385f3b84?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8bG9zJTIwYW5nZWxlc3xlbnwwfHwwfHw%3D&w=1000&q=80") !important; */
-        /* color:black; */
-    /* } */
+    .top { 
+        background-image: url("https://images.unsplash.com/photo-1542737579-ba0a385f3b84?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8bG9zJTIwYW5nZWxlc3xlbnwwfHwwfHw%3D&w=1000&q=80");
+        color:black;
+    }
 }
 
