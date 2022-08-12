@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <title>Linda's Portfolio Website</title>
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
         <link rel="stylesheet" type="text/css" href="style.css" />
     </head>
     <body>
-        <button id="bttn">Back to Top</button>
+        <button class="bttn" onclick="topFunction()">Back to Top</button>
         <div class="top">
             <div id="navBar">
             </div>
@@ -17,7 +19,7 @@
                 <div id="last">
                 </div>
             </div>
-            <div id="container">
+            <div class="container">
                 <pre id="blurb">
 const person = {
     name: <strong>'Linda Sanchez'</strong>,
@@ -27,7 +29,7 @@ const person = {
                 </pre>
             </div>
         </div>
-        <div class="middle">
+        <div class="middle" id="AboutMe">
             <div class="left">
                 <h1>My Experience with Coding</h1>
                 <ol>
@@ -39,7 +41,7 @@ const person = {
                 <p>Currently, I am <strong>3 weeks</strong> into my tech bootcamp with <a href="https://techtonica.org/"><strong>Techtonica</strong></a> (#BridgeTheTechGap).</p>
             </div>
             <div class="right">
-                <p id="message"></p>
+                <p></p>
             </div>
         </div>
         <div class="bottom">

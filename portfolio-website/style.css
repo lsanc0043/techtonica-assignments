@@ -1,20 +1,10 @@
+/* body includes: button, .top, .middle, .bottom*/
 body {
     line-height: 25px;
     margin:0px;
 }
 
-.top {
-    height: 100vh;
-    background-image: url('https://wallpaperaccess.com/full/518518.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: scroll;
-    position: relative;
-    align-content: center;
-    color: white;
-}
-
-#bttn {
+.bttn {
     display: none;
     position: fixed;
     bottom: 20px;
@@ -25,12 +15,24 @@ body {
     border-radius: 4px;
 }
 
-#bttn:hover {
+.bttn:hover {
   background-color: #555;
 }
 
-#navBar {
-    color:white;
+/* .top includes: #navBar, #name, .container */
+.top {
+    height: 100vh;
+    /* background-image: url('https://wallpaperaccess.com/full/518518.jpg'); */
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: scroll;
+    position: relative;
+    align-content: center;
+    color: white;
+}
+
+.top #navBar {
+    /* color:white; */
     display: flex;
     margin-right:20px;
     justify-content: space-around;
@@ -39,6 +41,7 @@ body {
     padding-top:1%;
 }
 
+/* #name includes: #first, #image # last */
 #name {
     text-align: center;
     display:flex;
@@ -47,31 +50,33 @@ body {
     font-size: 250%;
 }
 
-#image, #first, #last {
+#name #first, #image, #last {
     width:600px;
 }
 
-#first {
+#name #first {
     text-align: right;
 }
 
-#last {
+#name #last {
     text-align: left;
 }
 
-#pfp {
+/* #image includes: #pfp */
+#image #pfp {
     vertical-align: middle;
     border-radius: 50%;
     width:50%;
     padding:1%;
 }
 
-#container {
+/* .container includes: #blurb */
+.container {
     display:flex;
     justify-content: center;
 }
 
-#blurb {
+.container #blurb {
     font-family: 'Times New Roman', Times, serif;
     width:fit-content; 
     padding: 1%;
@@ -82,16 +87,85 @@ body {
     font-size: 150%;
 }
 
+
+/* .middle includes: .left, .right */
 .middle {
     display: flex;
     color: black;
-    /* margin-top:30%; */
 }
 
 .left, .right {
     background-color: aliceblue;
     width:50%;
     border-radius: 5%;
-    /* border:solid 1px; */
     padding:1%;
 }
+
+.contactForm {
+    height: 100vh;
+    background-image: url('https://wallpaperaccess.com/full/518518.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+    font-size: 20px;
+    padding:1%;
+}
+
+.contactForm form {
+    width:fit-content;
+    text-align: right;
+}
+
+.contactForm .required {
+    color: red;
+}
+
+.contactForm #back {
+    position:fixed;
+    top: 175px;
+}
+
+.fa {
+  padding: 20px;
+  font-size: 30px;
+  width: 30px;
+  border-radius: 50%;
+  text-align: center;
+  text-decoration: none;
+  margin: 5px 2px;
+}
+
+.fa:hover {
+    opacity: 0.7;
+}
+
+.fa-twitter {
+  background: #55ACEE;
+  color: white;
+}
+
+.fa-linkedin {
+  background: #007bb5;
+  color: white;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (min-width: 1020px) {
+    .top {
+        background-image: url('https://wallpaperaccess.com/full/518518.jpg');
+    }
+}
+@media only screen and (min-width: 600px) and (max-width: 1019px){
+    .top {
+        color:black;
+        background-image: url("https://images.unsplash.com/photo-1542737579-ba0a385f3b84?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8bG9zJTIwYW5nZWxlc3xlbnwwfHwwfHw%3D&w=1000&q=80");
+        /* background-image: url('https://media.istockphoto.com/photos/cloudy-day-of-los-angeles-downtown-skyline-and-palm-trees-in-picture-id1357722833?b=1&k=20&m=1357722833&s=170667a&w=0&h=1c7tjiWHF5fvEx5brCWRAt26DVNjmWLHVytKU-2C1x0='); */
+    }
+}
+@media only screen and (max-width: 599px){
+    /* .top { */
+        /* background-image: url("https://images.unsplash.com/photo-1542737579-ba0a385f3b84?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8bG9zJTIwYW5nZWxlc3xlbnwwfHwwfHw%3D&w=1000&q=80") !important; */
+        /* color:black; */
+    /* } */
+}
+

@@ -3,77 +3,67 @@ const navBarList = [
     "About Me", "Projects", "Contact"
 ]
 
+function oppColor(originalColor) {
+    return (originalColor === "black") ? "white":"black";
+}
+
+function addColorOnEvent(element, event, color) {
+    // const col = oppColor(element.style.color);
+    return element.addEventListener(event, function () {
+        element.style.color = color;
+    })
+}
+
 for (let i = 0; i < navBarList.length; i++) {
-    const label = document.createElement('a');
-    label.innerText = navBarList[i];
-    label.addEventListener('mouseover', function() {
-        label.style.color = "black";
-    })
-    label.addEventListener('mouseout', function() {
-        label.style.color = "white";
-    })
-    label.addEventListener('click', function() {
-        label.setAttribute('href', `#${navBarList[i].split(" ").join("")}`);
-        if (i === 2) {
-            label.setAttribute('href', "./contactForm.html")
+    const link = document.createElement('a');
+    const currNavText = navBarList[i];
+    link.innerText = currNavText;
+    addColorOnEvent(link, 'mouseover', "black");
+    addColorOnEvent(link, 'mouseout', "white");
+    link.addEventListener('click', function() {
+        link.setAttribute('href', `#${currNavText.split(" ").join("")}`);
+        if (link.innerText === "Contact") {
+            link.setAttribute('href', "./contactForm.html")
         }
-        label.style.textDecoration = "none";
+        link.style.textDecoration = "none";
     })
-
-    document.getElementById("navBar").appendChild(label);
+    document.getElementById("navBar").appendChild(link);
 }
-// end navBar
 
 // typewriter functionality
-const span1 = document.createElement('span');
-span1.textContent = "Welcome to";
-const img = document.createElement('img');
-img.setAttribute('src', "https://miro.medium.com/max/875/1*b2ZpVczibdIDlUbuN6S2ZA.png");
-img.setAttribute('id', "pfp");
-const span2 = document.createElement('span');
-span2.textContent = " my website!";
-document.querySelector("#first").append(span1);
-document.querySelector("#last").append(span2);
-let quoteArray = ["Welcome to"];
-let quoteArray2 = ["             my website!"];
-let textPosition = 0; 
-let textPosition2 = 0; 
-let speed = 100;
-typewriter1 = () => {
-    span1.innerHTML = quoteArray[0].substring(0, textPosition);
-  
-    if(textPosition++ != quoteArray[0].length) {
-        setTimeout(typewriter1, speed);
-    }
-}
-typewriter2 = () => {
-    span2.innerHTML = quoteArray2[0].substring(0, textPosition2);
-  
-    if(textPosition2++ != quoteArray2[0].length) {
-        setTimeout(typewriter2, speed)
-    }
-}
-window.addEventListener("load", typewriter1);
-window.addEventListener("load", typewriter2);
+function createTypewriter(location, quote, SPEED) {
+    const txt = document.createElement('span');
+    document.querySelector(`#${location}`).append(txt);
+    let txtPosition = 0;
+    return function typewriter() {
+        txt.innerHTML = quote[0].substring(0, txtPosition);
 
-document.getElementById("form").addEventListener('submit', function() {
-    document.querySelector("#person", "#email").required = true;
-    console.log(document.getElementById("person").value);
-})
-// typewriter functionality
+        if (txtPosition++ != quote[0].length) {
+            setTimeout(typewriter, SPEED)
+        }
+    }
+}
+
+const typeFirst = createTypewriter("first", ["Welcome to"], 100);
+const typeSecond = createTypewriter("last", [`           my website!`], 100);
+
+window.addEventListener("load", typeFirst);
+window.addEventListener("load", typeSecond);
 
 // scroll to top button
-const button = document.getElementById("bttn");
-window.onscroll = function() {scrollFunction()};
-function scrollFunction() {
-  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-    button.style.display = "block";
-  } else {
-    button.style.display = "none";
-  }
-}
+const button = document.getElementsByClassName("bttn");
+// window.onscroll = function() {scrollFunction()};
+
+// function scrollFunction() {
+//     const isBlockDisplay = (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20);
+//     button.style.display = (isBlockDisplay ? 'block' : 'none');
+// }
+
 function topFunction() {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
-  }
-button.addEventListener('click', topFunction);
+}
+  
+// document.getElementById("form").addEventListener('submit', function() {
+//     console.log(document.getElementById("person").value);
+// })
