@@ -4,26 +4,32 @@
         <link rel="stylesheet" type="text/css" href="style.css" />
     </head>
     <body>
+        <button id="bttn">Back to Top</button>
         <div class="top">
             <div id="navBar">
             </div>
-            <div>
-                <h1 id="name">Welcome to<img id="pfp" src="https://miro.medium.com/max/875/1*b2ZpVczibdIDlUbuN6S2ZA.png">my website!</h1>
+            <div id="name">
+                <div id="first">
+                </div>
+                <div id="image">
+                    <img id="pfp" src="https://miro.medium.com/max/875/1*b2ZpVczibdIDlUbuN6S2ZA.png">
+                </div>
+                <div id="last">
+                </div>
             </div>
             <div id="container">
                 <pre id="blurb">
 const person = {
     name: <strong>'Linda Sanchez'</strong>,
     location: <strong>'Los Angeles'</strong>,
-    languages spoken: <strong>['English', 'Cantonese', 'Mandarin', 'Korean']</strong>;
-}
+    languages spoken: <strong>['English', 'Cantonese', 'Mandarin', 'Korean']</strong>
+};
                 </pre>
-            </div>
             </div>
         </div>
         <div class="middle">
             <div class="left">
-                <p>My Experience with Coding</p>
+                <h1>My Experience with Coding</h1>
                 <ol>
                     <li><strong>Two</strong> years of Java - AP Computer Science using <a href="https://processing.org/examples">Processing</a>, an animation based GUI</li>
                     <li><strong>One</strong> basic C++ course in undergraduate studies</li>
@@ -33,7 +39,7 @@ const person = {
                 <p>Currently, I am <strong>3 weeks</strong> into my tech bootcamp with <a href="https://techtonica.org/"><strong>Techtonica</strong></a> (#BridgeTheTechGap).</p>
             </div>
             <div class="right">
-                <p>world</p>
+                <p id="message"></p>
             </div>
         </div>
         <div class="bottom">
