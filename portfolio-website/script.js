@@ -1,23 +1,69 @@
+// navBar
 const navBarList = [
-    "Ingredients", "Steps to Make", "Links to Other Wonton Soup Recipes", "About Me"
+    "About Me", "Projects", "Contact"
 ]
 
-for (let i = 0; i < navBarList.length; i++) {
-    const label = document.createElement('a');
-    label.innerText = navBarList[i];
-    label.addEventListener('mouseover', function() {
-        label.style.color = "white";
-    })
-    label.addEventListener('mouseout', function() {
-        label.style.color = "black";
-    })
-    label.addEventListener('click', function() {
-        label.setAttribute('href', `#${navBarList[i].split(" ").join("")}`);
-        if (i === 3) {
-            label.setAttribute('href', "./aboutme.html");
-        }
-        label.style.textDecoration = "none";
-    })
-
-    document.getElementById("navBar").appendChild(label);
+function oppColor(originalColor) {
+    return (originalColor === "black") ? "white":"black";
 }
+
+function addColorOnEvent(element, event, color) {
+    // const col = oppColor(element.style.color);
+    return element.addEventListener(event, function () {
+        element.style.color = color;
+    })
+}
+
+for (let i = 0; i < navBarList.length; i++) {
+    const link = document.createElement('a');
+    const currNavText = navBarList[i];
+    link.innerText = currNavText;
+    addColorOnEvent(link, 'mouseover', "black");
+    addColorOnEvent(link, 'mouseout', "white");
+    link.addEventListener('click', function() {
+        link.setAttribute('href', `#${currNavText.split(" ").join("")}`);
+        if (link.innerText === "Contact") {
+            link.setAttribute('href', "./contactForm.html")
+        }
+        link.style.textDecoration = "none";
+    })
+    document.getElementById("navBar").appendChild(link);
+}
+
+// typewriter functionality
+function createTypewriter(location, quote, SPEED) {
+    const txt = document.createElement('span');
+    document.querySelector(`#${location}`).append(txt);
+    let txtPosition = 0;
+    return function typewriter() {
+        txt.innerHTML = quote[0].substring(0, txtPosition);
+
+        if (txtPosition++ != quote[0].length) {
+            setTimeout(typewriter, SPEED)
+        }
+    }
+}
+
+const typeFirst = createTypewriter("first", ["Welcome to"], 100);
+const typeSecond = createTypewriter("last", [`           my website!`], 100);
+
+window.addEventListener("load", typeFirst);
+window.addEventListener("load", typeSecond);
+
+// scroll to top button
+const button = document.getElementsByClassName("bttn");
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+      button.style.display = "block";
+    } else {
+      button.style.display = "none";
+    }
+  }
+
+function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+}
+

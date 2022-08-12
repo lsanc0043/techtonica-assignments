@@ -1,30 +1,36 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
-        <link rel="stylesheet" href="./style.css">
+        <title>Linda's Portfolio Website</title>
+        <link rel="stylesheet" type="text/css" href="style.css" />
     </head>
     <body>
-        <nav id="navBar">
-            <!-- <a href="#name">Projects</a> |
-            <a href="/css/">CSS</a> |
-            <a href="/js/">JavaScript</a> |
-            <a href="/python/">Python</a> -->
-        </nav>
+        <button class="bttn" onclick="topFunction()">Back to Top</button>
         <div class="top">
-            <div>
-                <h1 id="name">LINDA <img id="pfp" src="https://miro.medium.com/max/875/1*b2ZpVczibdIDlUbuN6S2ZA.png"> SANCHEZ</h1>
+            <div id="navBar">
             </div>
-            <ul>
-                <li><strong>Name:</strong> Linda Sanchez</li>
-                <li><strong>Languages:</strong> English, Cantonese, Mandarin, Korean</li>
-                <li><strong>Hometown:</strong> Los Angeles, CA</li>
-            </ul>
+            <div id="name">
+                <div id="first">
+                </div>
+                <div id="image">
+                    <img id="pfp" src="https://miro.medium.com/max/875/1*b2ZpVczibdIDlUbuN6S2ZA.png">
+                </div>
+                <div id="last">
+                </div>
+            </div>
+            <div class="container">
+                <pre id="blurb">
+const person = {
+    name: <strong>'Linda Sanchez'</strong>,
+    location: <strong>'Los Angeles'</strong>,
+    languages spoken: <strong>['English', 'Cantonese', 'Mandarin', 'Korean']</strong>
+};
+                </pre>
             </div>
         </div>
-        <div class="middle">
+        <div class="middle" id="AboutMe">
             <div class="left">
-                <p>My Experience with Coding</p>
+                <h1>My Experience with Coding</h1>
                 <ol>
                     <li><strong>Two</strong> years of Java - AP Computer Science using <a href="https://processing.org/examples">Processing</a>, an animation based GUI</li>
                     <li><strong>One</strong> basic C++ course in undergraduate studies</li>
@@ -34,15 +40,13 @@
                 <p>Currently, I am <strong>3 weeks</strong> into my tech bootcamp with <a href="https://techtonica.org/"><strong>Techtonica</strong></a> (#BridgeTheTechGap).</p>
             </div>
             <div class="right">
-                <p>world</p>
+                <p></p>
             </div>
         </div>
         <div class="bottom">
 
         </div>
-        <footer>
+        <script src="script.js"></script>
 
-        </footer>
-        <script src="./scripts.js"></script>
     </body>
 </html>
