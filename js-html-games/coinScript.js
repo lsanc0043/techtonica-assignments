@@ -68,7 +68,7 @@ function createEverything() {
     }
 }
 
-document.getElementById("form").addEventListener('submit', function (event) {
+document.getElementById("coinform").addEventListener('submit', function (event) {
     event.preventDefault();
     const input = document.getElementById("numTimes").value;
     const error = document.getElementById("error");

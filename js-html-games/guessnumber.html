@@ -6,6 +6,28 @@
     </head>
     <body>
         <h1>Guess the Number</h1>
-        <script src="script.js"></script>
+        <div class="container">
+            <div>
+                <button id="custom">Select Your Own Range!</button>
+                <button id="random">Randomize!</button>
+                <div id="range">
+                    <label for="lower">Between:</label>
+                    <input type="text" id="lower" size="4">
+                    <label for="upper">and</label>
+                    <input type="text" id="upper" size="4">
+                    <button id="set">Go!</button>
+                    <p id="error"></p>
+                </div>
+            </div>
+            <div id="forms">
+                <form id="numForm">
+                    <p id="statement"></p>
+                    <input type="text" id="guess">
+                    <input type="submit" value="Guess!">
+                </form> <br>
+                <p id="hint"></p>
+            </div>
+        </div>
+        <script src="numScript.js"></script>
     </body>
 </html>
