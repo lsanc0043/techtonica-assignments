@@ -1,0 +1,33 @@
+.col {
+    border: solid 1px;
+    width: 30vw;
+    height: 20vw;
+}
+
+a, img {
+    display:inline-block;
+    width:100%;
+    height:100%;
+    background-color:rgba(204, 204, 204, 0);
+}
+
+.container {
+    margin: 0px;
+}
+
+#slider {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    width: fit-content;
+    height: fit-content;
+}
+
+#slider ul img{
+  width: 20vh;
+  height: 15vh;
+}
+
+#counter {
+    display: none;
+}
