@@ -1,3 +1,8 @@
+body {
+    background-color: rgb(56, 162, 150);
+    text-align: center;
+}
+
 .col {
     border: solid 1px;
     width: 30vw;
@@ -11,9 +16,9 @@ a, .homeGif {
     background-color:rgba(204, 204, 204, 0);
 }
 
-.container {
+/* .container {
     margin: 0px;
-}
+} */
 
 #slider {
     display: flex;
@@ -26,6 +31,10 @@ a, .homeGif {
 #slider ul img{
   width: 20vh;
   height: 15vh;
+}
+
+ul {
+    list-style: none;
 }
 
 #counter, #range, #numForm {
@@ -46,4 +55,19 @@ a, .homeGif {
 
 .home:hover {
   background-color: #555;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  background-color: #2196F3;
+  padding: 10px;
+  margin: 0px 35vw;
+}
+.grid-item {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  font-size: 30px;
+  text-align: center;
 }

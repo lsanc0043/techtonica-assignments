@@ -1,5 +1,9 @@
 const slider = document.getElementById('slider');
 const counter = [0, 0];
+const startGifTails = 0;
+const midGifHeads = 9;
+const endGifTails = 17;
+const nTimes = 1;
 
 function createEverything() {
 
@@ -30,11 +34,9 @@ function createEverything() {
         function next(last) {
             if (count < last) {
                 setImgNum(count, img)
-                // console.log("count", count);
                 count++;
             }
             else if (count === last && lastCount !== n) {
-                // console.log("lastCount is ", lastCount)
                 count = 0;
                 lastCount++;
             }
@@ -44,32 +46,25 @@ function createEverything() {
     
     function genResult() {
         const flipResult = Math.random();
-        if (flipResult < 0.5) {
-            console.log("heads");
-            return "heads";
-        } 
-        else {
-            console.log("tails");
-            return "tails";
-        }
+        return flipResult < 0.5 ? 'heads' : 'tails';
     }
     
     switch (genResult()) {
         case "heads":
-            run(1, 0, 9);
+            run(nTimes, startGifTails, midGifHeads); // tails to heads
             counter[0]++;
             result.innerHTML = `Results: <strong>heads</strong>`;
             break;
         case "tails":
-            run(1, 9, 17);
+            run(nTimes, midGifHeads, endGifTails); // heads to tails
             counter[1]++;
             result.innerHTML = `Results: <strong>tails</strong>`;
         break;
     }
 }
 
-document.getElementById("coinform").addEventListener('submit', function (event) {
-    event.preventDefault();
+function onSubmit(e) {
+    e.preventDefault();
     const input = document.getElementById("numTimes").value;
     const error = document.getElementById("error");
     const counts = document.getElementById("counter");
@@ -88,4 +83,6 @@ document.getElementById("coinform").addEventListener('submit', function (event) 
         error.innerHTML = "Please enter a number.";
     }
     console.log(input);
-})
+}
+
+document.getElementById("coinform").addEventListener('submit', onSubmit)
