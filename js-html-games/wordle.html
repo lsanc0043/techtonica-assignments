@@ -5,25 +5,23 @@
     </head>
 
     <body>
-        <h1>Boggle!</h1>
-        <div id="boggle">
+        <h1>Wordle!</h1>
+        <div id="wordle">
         </div>
         <div>
             <br><br>
-            <p>Score: <span id="score"></span></p>
-            <form id="wordForm">
-                <input id="word" type="text" placeholder="Type your word here">
-                <input type="submit">
-            </form>
+            <button id="restart">Get a New Word!</button>
             <p id="errorMessage"></p>
-            <ul id="guesses">
-
-            </ul>
+        </div>
+        <div id="keyboard">
+            <div class="keyRow" id="one"></div>
+            <div class="keyRow" id="two"></div>
+            <div class="keyRow" id="three"></div>
         </div>
         <a href="./home.html">
             <img class="home"
                 src="https://cdn.dribbble.com/users/1473783/screenshots/6076161/media/e35089e3c113fc063d6d3c0c655cf897.png?compress=1&resize=400x300&vertical=top">
         </a>
-        <script src="bogscript.js"></script>
+        <script src="wordlescript.js"></script>
     </body>
 </html>
