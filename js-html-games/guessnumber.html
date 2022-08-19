@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> 
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <h1>Guess the Number</h1>
+        <div class="container">
+            <div>
+                <button id="custom">Select Your Own Range!</button>
+                <button id="random">Randomize!</button>
+                <div id="range">
+                    <label for="lower">Between:</label>
+                    <input type="text" id="lower" size="4">
+                    <label for="upper">and</label>
+                    <input type="text" id="upper" size="4">
+                    <button id="set">Go!</button>
+                    <p id="error"></p>
+                </div>
+            </div>
+            <div id="forms">
+                <form id="numForm">
+                    <p id="statement"></p>
+                    <input type="text" id="guess">
+                    <input type="submit" value="Guess!">
+                </form> <br>
+                <p id="hint"></p>
+                <ul id="guesses"></ul>
+            </div>
+        </div>
+        <a href="./home.html">
+            <img class="home" src="https://cdn.dribbble.com/users/1473783/screenshots/6076161/media/e35089e3c113fc063d6d3c0c655cf897.png?compress=1&resize=400x300&vertical=top">
+        </a>
+        <script src="numScript.js"></script>
+    </body>
+</html>
