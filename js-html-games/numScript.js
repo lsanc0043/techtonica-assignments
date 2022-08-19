@@ -9,13 +9,14 @@ const guess = document.getElementById("guess");
 const guessList = document.getElementById("guesses");
 let bounds = [];
 let correctNum = 0;
-let count = 0;
-const rightAns = [];
+let count = 1;
+let rightAns = 0;
 
 function clear() { // resets the page
     setBgColor("rgb(56, 162, 150)"); // resets to default background color
     setText(""); // resets hint to nothing
     guessList.innerHTML = ""; // empties guessList
+    count = 1;
 }
 
 function setBgColor(color) { // changes bgColor to specified color
@@ -41,11 +42,12 @@ function addGuess(num) { // creates new list item, sets list text to the guess, 
 //     });
 // }
 
-function addFormSubmit(corr) { // adds formSubmit
+function addFormSubmit() { // adds formSubmit
     numForm.addEventListener('submit', function (event) {
         event.preventDefault();
         console.log("ran submit");
-        checkNum(guess.value, corr);
+        console.log(guess.value);
+        checkNum(guess.value, rightAns);
     })
 }
 
@@ -78,6 +80,7 @@ function addFormSubmit(corr) { // adds formSubmit
 
 function upDown(num, ans) { // checks if guess is close to the answer and gives up or down hints
     const diff = num - ans;
+    console.log(diff);
     if (diff === 0) {
         setBgColor("#8dcc9e");
         setText(`CORRECT! GOOD JOB! It took you <strong>${count}</strong> tries!`);
@@ -90,22 +93,22 @@ function upDown(num, ans) { // checks if guess is close to the answer and gives 
         setBgColor("#f0ce7a");
         setText("Go up!");
     }
+    count++;
 }
 
 function checkNum(val, answer) { // checks if val is a number or if it's within bounds
     console.log("ran checkNum");
     if (isNaN(val)) {
-        setBgColor("red");
+        setBgColor("#d14134");
         setText("Not a number! Try again.");
         return;
     }
     if (val >= (bounds[0]) && val <= (bounds[1])) { // within bounds
         upDown(val, answer);
-        count++;
         addGuess(val);
     }
     else {
-        setBgColor("red");
+        setBgColor("#d14134");
         setText("Outside of Bounds! Try again.");
     }
 }
@@ -119,6 +122,7 @@ function randomize() {
     statement.innerHTML = `The number is between <strong>${bounds[0]}</strong> and <strong>${bounds[1]}</strong>`;
     numForm.style.display = "block";
     correctNum = Math.floor(Math.random()*(bounds[1]-bounds[0]) + bounds[0]);
+    rightAns = correctNum;
     console.log(correctNum);
 }
 
@@ -129,6 +133,7 @@ function onButtonClick() {
     bounds[0] = Number(lower);
     bounds[1] = Number(upper);
     correctNum = Math.floor(Math.random()*(bounds[1]-bounds[0]) + bounds[0]);
+    rightAns = correctNum;
     console.log(correctNum);
     if (!isNaN(bounds[0] && !isNaN(bounds[1]))) {
         if (bounds[1] < bounds[0]) {
