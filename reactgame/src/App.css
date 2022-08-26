@@ -1,0 +1,27 @@
+.App {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+.box {
+  border: solid;
+  width: 600px;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.snake {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  background-color: red;
+}
+
+.slider {
+  display:inline-block;
+  background-color: blue; 
+  height: 20px;
+}
