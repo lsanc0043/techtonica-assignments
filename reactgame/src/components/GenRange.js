@@ -3,8 +3,6 @@ import GenForm from "./GenForm";
 
 const GenRange = (props) => {
   // allows access to input value
-  let lowerBound = React.createRef();
-  let upperBound = React.createRef();
 
   const [message, setMessage] = useState("");
   const [lower, setLower] = useState(0);
@@ -13,17 +11,17 @@ const GenRange = (props) => {
   // eslint-disable-next-line
   const [randNum, setRandNum] = useState(0);
 
-  const handleClick = () => {
+  const onGo = (lower, upper) => {
     if (
-      isNaN(lowerBound.current.value) ||
-      lowerBound.current.value === "" ||
-      isNaN(upperBound.current.value) ||
-      upperBound.current.value === ""
+      isNaN(lower) ||
+      lower === "" ||
+      isNaN(upper) ||
+      upper === ""
     ) {
       setMessage("Please enter a number.");
     } else {
-      let lowerVal = Number(lowerBound.current.value);
-      let upperVal = Number(upperBound.current.value);
+      let lowerVal = Number(lower);
+      let upperVal = Number(upper);
       if (lowerVal > upperVal) {
         setMessage("Lower bound cannot be greater than upper bound.");
       } else {
@@ -37,15 +35,39 @@ const GenRange = (props) => {
 
   return (
     <div>
-      <label htmlFor="min">Between: </label>
-      <input type="text" ref={lowerBound} id="min" size="4" />
-      <label htmlFor="max"> and:</label>
-      <input type="text" ref={upperBound} id="max" size="4" />
-      <button onClick={handleClick}>Go!</button>
+      <Range onGo={onGo} />
       <p>{message}</p>
       <GenForm min={lower} max={upper} answer={random} />
     </div>
   );
 };
+
+function Range(props) {
+  const { onGo } = props;
+  const [lower, setLower] = useState(0);
+  const [upper, setUpper] = useState(100);
+  const onClick = () => {
+    onGo(lower, upper);
+  };
+  return (
+    <div>
+      <label htmlFor="min">Between: </label>
+      <input
+        type="text"
+        onChange={(e) => setLower(e.target.value)}
+        id="min"
+        size="4"
+      />
+      <label htmlFor="max"> and:</label>
+      <input
+        type="text"
+        onChange={(e) => setUpper(e.target.value)}
+        id="max"
+        size="4"
+      />
+      <button onClick={onClick}>Go!</button>
+    </div>
+  );
+}
 
 export default GenRange;

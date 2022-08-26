@@ -5,8 +5,8 @@ const GenForm = (props) => {
   const [guessList, setGuessList] = useState([]);
   const [message, setMessage] = useState("");
   const [count, setCount] = useState(0);
-  const [leftBound, setLeftBound] = useState(props.min);
-  const [rightBound, setRightBound] = useState(props.max);
+  const [leftBound, setLeftBound] = useState(0);
+  const [rightBound, setRightBound] = useState(0);
 
   const handleClick = () => {
     if (isNaN(inputNum.current.value) || inputNum.current.value === "") {
@@ -18,12 +18,15 @@ const GenForm = (props) => {
       } else {
         setMessage("");
         guessList.push(inputVal);
-        console.log(guessList);
         setCount(count + 1);
         if (inputVal > props.answer) {
+          console.log(leftBound);
+          console.log(rightBound);
           setRightBound(inputVal);
           setMessage("Go down!");
         } else if (inputVal < props.answer) {
+          console.log(leftBound);
+          console.log(rightBound);
           setLeftBound(inputVal);
           setMessage("Go up!");
         } else {
@@ -33,8 +36,12 @@ const GenForm = (props) => {
     }
   };
 
+  // console.log(leftBound);
+  // console.log(rightBound);
+
   const handleReset = () => {
     setMessage("");
+    setGuessList([]);
     setCount(0);
   };
 
@@ -49,14 +56,6 @@ const GenForm = (props) => {
       <button onClick={handleReset}>Reset Game!</button>
       <p>Number of Guesses: {count}</p>
       <p>{message}</p>
-      <label>
-        Between {props.min}
-        <div
-          className="slider"
-          style={{ width: Math.floor(props.max - props.min) / 8 }}
-        ></div>
-        and {props.max}
-      </label>
 
       <p>Guesses Made So Far:</p>
       <ul style={{ listStyle: "none" }}>

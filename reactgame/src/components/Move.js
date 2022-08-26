@@ -9,7 +9,23 @@ const Move = (props) => {
   const [edgeMessage, setEdgeMessage] = useState("");
   const [atEdge, setAtEdge] = useState("none");
 
+  // function isEdge() {
+  //   if (
+  //     (countRight - countLeft) * 5 < -280 ||
+  //     (countRight - countLeft) * 5 > 300 ||
+  //     Math.abs((countDown - countUp) * 5) > 190
+  //   ) {
+  //     setEdgeMessage("You touched the edge! You lose:(");
+  //     setAtEdge("inline-block");
+  //     setCountLeft(0);
+  //     setCountUp(0);
+  //     setCountRight(0);
+  //     setCountDown(0);
+  //   }
+  // }
+
   useEffect(() => {
+    timeOut();
     const interval = setInterval(() => {
       document.addEventListener(
         "keydown",
@@ -37,20 +53,10 @@ const Move = (props) => {
     return () => clearInterval(interval);
   });
 
-  function handleClick() {
-    setEdgeMessage("");
-    setAtEdge("none");
-  }
+  // isEdge();
 
-  function isEdge() {
-    if (
-      Math.abs((countRight + 4 - (countLeft + 6)) * 5) > 290 ||
-      Math.abs((countDown - countUp) * 5) > 190
-    ) {
-      setEdgeMessage("You touched the edge! You lose:(");
-      setAtEdge("inline-block");
-      console.log((countDown - countUp) * 5);
-      console.log((countRight - countLeft) * 5);
+  function timeOut() {
+    if (props.outOfTime === true) {
       setCountLeft(0);
       setCountUp(0);
       setCountRight(0);
@@ -58,9 +64,13 @@ const Move = (props) => {
     }
   }
 
-  let topPix = (countDown - countUp) * 5;
-  let leftPix = (countRight - countLeft) * 5;
-  isEdge();
+  function handleClick() {
+    setEdgeMessage("");
+    setAtEdge("none");
+  }
+
+  let topPix = (countDown - countUp) * 20;
+  let leftPix = (countRight - countLeft) * 20;
 
   return (
     <div>
@@ -72,7 +82,7 @@ const Move = (props) => {
             left: leftPix + "px",
           }}
         ></div>
-        <RandFood snakeTop={topPix} snakeLeft={leftPix} />
+        <RandFood snakeTop={topPix} snakeLeft={leftPix} outOfTime={props.outOfTime}/>
       </div>
       <div>
         <button style={{ display: atEdge }} onClick={handleClick}>
@@ -80,6 +90,18 @@ const Move = (props) => {
         </button>
         <p>{edgeMessage}</p>
       </div>
+
+      {/* <div>
+        <p>
+          top index: {topPix} left index: {leftPix}
+        </p>
+        <p>
+          top {countUp} down {countDown} left {countLeft} right {countRight}
+        </p>
+        <p>
+          edgeCheck {(countDown - countUp) * 5};{(countRight - countLeft) * 5}
+        </p>
+      </div> */}
     </div>
   );
 };

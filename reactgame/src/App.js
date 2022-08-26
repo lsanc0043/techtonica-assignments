@@ -1,15 +1,12 @@
 import "./App.css";
 import GenNumberGame from "./components/GenNumberGame";
-// import Move from "./components/Move";
+import GenSnakeGame from "./components/GenSnakeGame";
 
 function App() {
   return (
     <div className="App">
+      <GenSnakeGame />
       <GenNumberGame />
-      {/* <div className="snakeGame">
-        <h1>snake game?</h1>
-        <Move />
-      </div> */}
     </div>
   );
 }

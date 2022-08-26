@@ -15,8 +15,9 @@ const GenNumberGame = () => {
     setShowRand("block");
     setShowRange("none");
   };
+
   return (
-    <div>
+    <div className="numberGame">
       <h1>Can you guess the number?</h1>
 
       <button onClick={showHide}>Choose your Own Range!</button>
