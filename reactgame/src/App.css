@@ -1,0 +1,37 @@
+.App {
+  text-align: center;
+  display: flex;
+  /* flex-direction: row; */
+  /* flex-wrap: wrap; */
+  justify-content: space-around;
+  align-items: center;
+  background-image: url("https://i.pinimg.com/originals/1a/f6/89/1af689d42bdb7686df444f22925f9e89.gif");
+  background-size: contain;
+  height: 100vh;
+  color: white;
+}
+
+.numberGame {
+  background-color: lightblue;
+  height: fit-content;
+  border-radius:75%;
+}
+
+.box {
+  border: solid;
+  width: 600px;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(67, 135, 157, 0.692);
+
+}
+
+.snake {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  background-color: red;
+  border: solid;
+}
