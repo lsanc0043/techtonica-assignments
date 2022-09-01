@@ -1,0 +1,40 @@
+body {
+    background-color: rgb(193, 162, 104);
+}
+
+.bookshelf {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.row-4 {
+    display: flex; 
+    justify-content: center;
+    width: 60px;
+}
+
+.card {
+    height: 400px;
+    border: solid 2px black;
+    background-color: rgb(70, 154, 88);
+    background-repeat: no-repeat;
+    background-size: 60px 400px;
+    writing-mode: vertical-rl;
+    justify-content: center;
+}
+
+.card:hover {
+    margin-top: 20%;
+}
+
+img {
+    width: 200px;
+    height: 300px;
+}
+
+.bookForm {
+    display: flex;
+    justify-content: space-between;
+    text-align: right;
+}
