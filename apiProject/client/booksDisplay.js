@@ -2,6 +2,15 @@ async function showBooks() {
   const URL = "http://localhost:8080/api/books";
   const response = await fetch(URL);
   const responseBooks = await response.json();
+
+  const addURL = "http://localhost:8080/api/addedBooks";
+  const addResponse = await fetch(addURL);
+  const newBooks = await addResponse.json();
+
+  const delURL = "http://localhost:8080/api/deletedBooks";
+  const delResponse = await fetch(delURL);
+  const oldBooks = await delResponse.json();
+
   for (let book of responseBooks) {
     const card = `<div class="row-4">
       <button class="card" style="background-image: url(${book.spine})">
@@ -11,15 +20,12 @@ async function showBooks() {
     </div>`;
     document.getElementById("books").innerHTML =
       document.getElementById("books").innerHTML + card;
-    editSelBook(book);
   }
-  addBooks(responseBooks);
+  addBooks(responseBooks, newBooks);
+  updateStatus(newBooks, oldBooks);
 }
 
-async function addBooks(books) {
-  const addURL = "http://localhost:8080/api/addedBooks";
-  const addResponse = await fetch(addURL);
-  const newBooks = await addResponse.json();
+async function addBooks(books, newBooks) {
   const bookList = document.querySelectorAll("button");
 
   for (let i = books.length - newBooks.length; i < bookList.length - 1; i++) {
@@ -42,6 +48,7 @@ async function addBooks(books) {
       <button id="delete" onclick="deleteBook('${books[i].length}')">Delete</button>
       <button id="edit" onclick="editBook('${books[i].length}')">Edit</button>
       </div>`;
+      editSelBook(books[i]);
     });
   }
 }
@@ -67,25 +74,25 @@ function editSelBook(book) {
   const inputs = document.querySelectorAll("input");
   const ids = [];
   const keys = Object.keys(book);
+  const values = Object.values(book);
+
   for (let i = 0; i < inputs.length; i++) {
     ids.push(inputs[i].getAttribute("id"));
   }
+
   const filt = ids.filter((val) => keys.includes(val));
-  console.log(filt);
+  const indices = filt.map((val) => ids.indexOf(val));
+  for (let i = 0; i < indices.length; i++) {
+    inputs[indices[i]].setAttribute("placeholder", values[i]);
+  }
 }
 
-async function updateStatus() {
-  const addURL = "http://localhost:8080/api/addedBooks";
-  const addResponse = await fetch(addURL);
-  const newBooks = await addResponse.json();
+async function updateStatus(newBooks, oldBooks) {
   for (let i = 0; i < newBooks.length; i++) {
     const newBook = `<div><p>Added <strong>${newBooks[i].title}</strong> by <strong>${newBooks[i].authorFirst} ${newBooks[i].authorLast}</strong></p></div>`;
     document.getElementById("status-info-new").innerHTML += newBook;
   }
 
-  const delURL = "http://localhost:8080/api/deletedBooks";
-  const delResponse = await fetch(delURL);
-  const oldBooks = await delResponse.json();
   for (let i = 0; i < oldBooks.length; i++) {
     const oldBook = `<div><p>Deleted <strong>${oldBooks[i].title}</strong> by <strong>${oldBooks[i].authorFirst} ${oldBooks[i].authorLast}</strong></p></div>`;
     document.getElementById("status-info-old").innerHTML += oldBook;
@@ -93,4 +100,3 @@ async function updateStatus() {
 }
 
 showBooks();
-updateStatus();

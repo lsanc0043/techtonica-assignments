@@ -60,3 +60,19 @@ img {
     justify-content: space-evenly;
 }
 
+.home {
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    font-size: 18px;
+    color: black;
+    padding: 15px;
+    border-radius: 4px;
+    width: 100px;
+    height: 80px;
+  }
+  
+  .home:hover {
+    background-color: #555;
+  }
+

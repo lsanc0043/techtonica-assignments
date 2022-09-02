@@ -36,7 +36,7 @@ app.get("/api/editBook", (req, res) => {
   res.json(editedBook);
 });
 
-app.get("/index.html?/:length", (req, res) => {
+app.get("/index.html/:length", (req, res) => {
   const length = req.params.length;
   for (let book of BOOKS) {
     if (book.length === length) {
@@ -63,19 +63,21 @@ app.post("/index.html?", (req, res) => {
   res.redirect("/index.html?");
 });
 
-app.put("/index.html?/:length", (req, res) => {
-  const book = req.body;
-  editedBook.push(book);
-  for (let i = 0; i < BOOKS.length; i++) {
-    if (BOOKS[i].length === length) {
-      editedBook.push(BOOKS[i]);
-    }
-  }
+// app.put("/index.html?/:length", (req, res) => {
+// const length = req.params.length;
+// const book = req.body;
 
-  res.redirect("/index.html?");
-});
+// for (let i = 0; i < BOOKS.length; i++) {
+//   if (BOOKS[i].length === length) {
+//     editedBook.push(BOOKS[i]);
+//   }
+// }
+// res.send(console.log("put request called"));
 
-app.delete("/index.html?/:length", (req, res) => {
+// res.redirect("/index.html?");
+// });
+
+app.delete("/index.html/:length", (req, res) => {
   const length = req.params.length;
   for (let i = 0; i < BOOKS.length; i++) {
     if (BOOKS[i].length === length) {
@@ -83,6 +85,7 @@ app.delete("/index.html?/:length", (req, res) => {
       BOOKS.splice(i, 1);
     }
   }
+
   for (let i = 0; i < addedBooks.length; i++) {
     if (addedBooks[i].length === length) {
       addedBooks.splice(i, 1);
