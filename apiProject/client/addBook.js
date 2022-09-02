@@ -1,12 +1,17 @@
 const yesImg = document.getElementById("yes");
 const noImg = document.getElementById("no");
+const imgForm = document.querySelector(".showCoverSpine");
 
 function yesFunc() {
-  var x = document.getElementById("yes").checked;
-  console.log(x);
+  let x = document.getElementById("yes").checked;
+  if (x === true) {
+    imgForm.style.display = "block";
+  }
 }
 
 function noFunc() {
-    var x = document.getElementById("no").checked;
-    console.log(x);
+  let x = document.getElementById("no").checked;
+  if (x === true) {
+    imgForm.style.display = "none";
   }
+}
