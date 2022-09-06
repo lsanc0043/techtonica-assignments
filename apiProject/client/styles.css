@@ -1,0 +1,78 @@
+body {
+    background-color: rgb(193, 162, 104);
+    text-align: center;
+}
+
+.bookshelf {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-bottom: 25px;
+}
+
+.row-4 {
+    display: flex; 
+    justify-content: center;
+    width: 60px;
+}
+
+.card {
+    height: 400px;
+    border: solid 2px black;
+    background-color: rgb(70, 154, 88);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-repeat: no-repeat;
+    background-size: 60px 400px;
+}
+
+.card:hover {
+    margin-top: 20%;
+}
+
+img {
+    width: 200px;
+    height: 300px;
+}
+
+.book-title, #bookAuthor {
+    display: flex;
+    justify-content: space-between;
+    padding: 10%;
+    writing-mode: vertical-rl;
+    font-size: 100%;
+}
+
+.bookForm {
+    display: flex;
+    justify-content: space-around;
+    text-align: right;
+}
+
+.showCoverSpine, .editForm {
+    display: none;
+}
+
+#status {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.home {
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    font-size: 18px;
+    color: black;
+    padding: 15px;
+    border-radius: 4px;
+    width: 100px;
+    height: 80px;
+  }
+  
+  .home:hover {
+    background-color: #555;
+  }
+

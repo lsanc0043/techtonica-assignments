@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Add Book</title>
+ 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./styles.css">
+</head>
+ 
+<body>
+        <div class="bookForm">
+            <form action="http://localhost:8080/index.html?" method="POST">
+                <h5>Add a book!</h5>
+
+                <label for="title">Title: </label>
+                <input type="text" id="title" name="title" required/> <br>
+                <label for="first">Author First Name: </label>
+                <input type="text" id="first" name="authorFirst" required/> <br>
+                <label for="last">Author Last Name: </label>
+                <input type="text" id="last" name="authorLast" required/> <br>
+                <label for="pages">Number of Pages: </label>
+                <input type="number" id="pages" min="1" name="length"/> <br>
+
+                <label for="coverSpine">Would you like to add a cover or spine?</label>
+                <fieldset id="coverSpine">
+                    <input type="radio" id="yes" name="coverOrSpine" value="yes" onclick="yesFunc()">
+                    <label for="yes">Yes</label>
+                    <input type="radio" id="no" name="coverOrSpine" value="no" onclick="noFunc()">
+                    <label for="no">No</label>
+                </fieldset>
+
+                <div class="showCoverSpine">
+                    <label for="spine">Paste the link to the <strong>spine</strong> image here!</label>
+                    <input type="text" id="spine" name="spine"/> <br>
+                    <label for="cover">Paste the link to the <strong>cover</strong> image here!</label>
+                    <input type="text" id="cover" name="cover"/>
+                </div>
+
+                <input type="submit" value="Add!"/>
+            </form>
+        </div>
+    </div>
+
+    <a href="index.html">
+        <img class="home" src="https://cdn.dribbble.com/users/1473783/screenshots/6076161/media/e35089e3c113fc063d6d3c0c655cf897.png?compress=1&resize=400x300&vertical=top">
+    </a>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+ 
+    <script src="./addBook.js"></script>
+</body>
+ 
+</html>

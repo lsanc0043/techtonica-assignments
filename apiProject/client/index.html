@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Linda Library</title>
+ 
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="./styles.css">
+    </head>
+ 
+    <body>
+        <div class="container">
+            <hr>
+            <h1>Welcome to Linda's Library!</h1>
+            <hr>
+            <div class="bookshelf">
+                <div class="row" id="books">
+                </div>
+                <div class="row" id="book-info"> 
+                </div>
+            </div>
+
+            <div class="bookForm editForm">
+                <form action="http://localhost:8080/index.html" method="PUT">
+                    <h5>Edit this book!</h5>
+    
+                    <label for="title">Title: </label>
+                    <input type="text" id="title"/> <br>
+                    <label for="first">Author First Name: </label>
+                    <input type="text" id="authorFirst"/> <br>
+                    <label for="last">Author Last Name: </label>
+                    <input type="text" id="authorLast"/> <br>
+                    <label for="pages">Number of Pages: </label>
+                    <input type="number" id="length" min="1"/> <br>
+    
+                    <label for="coverSpine">Would you like to edit the cover or spine?</label>
+                    <fieldset id="coverSpine">
+                        <input type="radio" id="yes" value="yes" onclick="yesFunc()">
+                        <label for="yes">Yes</label>
+                        <input type="radio" id="no" value="no" onclick="noFunc()">
+                        <label for="no">No</label>
+                    </fieldset>
+    
+                    <div class="showCoverSpine">
+                        <label for="spine">Paste the link to the <strong>spine</strong> image here!</label>
+                        <input type="text" id="spine"/> <br>
+                        <label for="cover">Paste the link to the <strong>cover</strong> image here!</label>
+                        <input type="text" id="cover"/>
+                    </div>
+    
+                    <input type="submit" value="Edit!"/>
+                </form>
+            </div>
+
+            <button onclick="window.location.href = 'addBook.html'">Add a Book!</button>
+            <h5>Status:</h5>
+            <div class="row" id="status"> 
+                <p id="status-info-new">New Books:</p>
+                <p id="status-info-old">Deleted Books:</p>
+                <p id="status-info-edit">Edited Books:</p>
+            </div>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+ 
+        <script src="./booksDisplay.js"></script>
+        <script src="./addBook.js"></script>
+    </body>
+ 
+</html>
