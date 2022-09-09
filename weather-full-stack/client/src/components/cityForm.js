@@ -13,6 +13,12 @@ const CityForm = ({ coordDataToParent }) => {
       });
   };
 
+  const handleClick = () => {
+    const randLat = Number(Math.random() * 180 - 90).toFixed(4);
+    const randLon = Number(Math.random() * 360 - 180).toFixed(4);
+    coordDataToParent([randLat, randLon]);
+  };
+
   const handleOptSubmit = (e) => {
     const city = e.target.value;
     loadData(city);
@@ -65,13 +71,19 @@ const CityForm = ({ coordDataToParent }) => {
           <option value="Globe">--Default--</option>
           <option>Los Angeles</option>
           <option>Oakland</option>
+          <option>Moscow</option>
           <option>Sacramento</option>
           <option>Austin</option>
+          <option>Beijing</option>
           <option>New York</option>
           <option>Dallas</option>
+          <option>Antartica</option>
           <option>Chicago</option>
+          <option>London</option>
         </select>
       </label>
+      <br />
+      <button onClick={handleClick}>Get Random Coordinates!</button>
     </div>
   );
 };

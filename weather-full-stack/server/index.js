@@ -20,7 +20,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/api/coords", (req, res) => {
-  res.json(COORDS); 
+  res.json(COORDS);
 });
 
 app.get("/api/weather", (req, res) => {
