@@ -5,19 +5,17 @@ import Questions from "./components/questions";
 
 function App() {
   const [values, setValues] = useState({});
+  const [submitted, setSubmitted] = useState(false);
 
-  const dataFromChild = (childData) => {
+  const dataFromChild = (childData, submission) => {
     setValues(childData);
+    setSubmitted(submission);
   };
 
   return (
     <div className="App">
-      <h1>Start your Quiz!</h1>
-      <QuizForm formData={dataFromChild} />
+      {!submitted ? <QuizForm formData={dataFromChild} /> : <></>}
       <Questions formValues={values} />
-      {/* {Object.entries(values).map((name, index) => (
-        <p key={index}>{name}</p>
-      ))} */}
     </div>
   );
 }

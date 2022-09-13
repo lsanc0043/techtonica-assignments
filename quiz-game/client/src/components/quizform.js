@@ -1,19 +1,26 @@
-import { useState } from "react";
-import Category from "./categories";
+import { useEffect, useState } from "react";
 const QuizForm = ({ formData }) => {
   const [submitted, setSubmitted] = useState(false);
+  const [categories, setCategories] = useState(null);
+
   const [values, setValues] = useState({
     category: "",
     numQ: "",
     difficulty: "",
     type: "",
   });
-  const dataFromChild = (childData) => {
-    setValues((originalValues) => ({
-      ...originalValues,
-      ["category"]: childData,
-    }));
+
+  const loadData = () => {
+    fetch("http://localhost:5000/api/categories")
+      .then((response) => response.json())
+      .then((data) => {
+        setCategories(data.trivia_categories);
+      });
   };
+
+  useEffect(() => {
+    loadData();
+  }, []);
 
   const set = (name) => {
     return ({ target: { value } }) => {
@@ -23,23 +30,37 @@ const QuizForm = ({ formData }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    formData(values);
     setSubmitted(true);
+    formData(values, submitted);
   };
 
   if (submitted === true) {
     return (
-      <div>
+      <>
         <button onClick={() => setSubmitted(false)}>
           Go back to selection
-        </button>
-      </div>
+        </button>{" "}
+        <br />
+      </>
     );
+  } else if (!categories) {
+    return <div>Loading...</div>;
   } else {
     return (
-      <div>
+      <div className="card">
+        <h1>Customize your Quiz!</h1>
         <form onSubmit={handleSubmit}>
-          <Category childToParent={dataFromChild} /> <br />
+          <select value={values.category} onChange={set("category")}>
+            <option value="">--Pick a Category--</option>
+            {categories.map((category, index) => {
+              return (
+                <option key={index} value={category.id}>
+                  {category.name}
+                </option>
+              );
+            })}
+          </select>{" "}
+          <br />
           <label htmlFor="numQ">How many questions? </label>
           <input
             id="numQ"

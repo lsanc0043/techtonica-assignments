@@ -1,3 +1,64 @@
-.App {
+body {
+  padding: 10%;
+  display: flex;
+  justify-content: center;
   text-align: center;
+  height: 100vh;
+  background-image: url("https://wallpaperaccess.com/full/2384075.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  background-color: aliceblue;
+  opacity: 80%;
+  border-radius: 10%;
+  border: solid 1px black;
+  justify-content: center;
+  align-items: center;
+  width: 30vw;
+  height: 30vw;
+}
+
+.question {
+  display: flex;
+  flex-direction: column;
+  background-color: aliceblue;
+  opacity: 80%;
+  border-radius: 10%;
+  border: solid 1px black;
+  justify-content: center;
+  align-items: center;
+  padding: 10%;
+}
+
+.options {
+  background-color: #5b83cd; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;  
+  font-size: 16px;
+  margin: 4px 50px;
+  cursor: pointer;
+  width: 400px;
+}
+
+.options:hover {
+  opacity: 80%;
+}
+
+.description {
+  display: flex;
+  justify-content: space-between;
+}
+
+.done {
+  margin-top: 10%;
+  width: 300px;
+  height: 150px;
 }

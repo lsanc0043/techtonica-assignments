@@ -21,7 +21,7 @@ app.get("/api/categories", (req, res) => {
     .then((data) => res.send(data));
 });
 
-app.get("/api/questions", (req, res) => {
+app.get("/api/questions", async (req, res) => {
   const params = new URLSearchParams({
     category: req.query.category,
     amount: req.query.amount,
@@ -29,9 +29,9 @@ app.get("/api/questions", (req, res) => {
     type: req.query.type,
   });
   const url = `https://opentdb.com/api.php?${params}`;
-  fetch(url)
-    .then((response) => response.json())
-    .then((data) => res.send(data));
+  const response = await fetch(url);
+  const data = await response.json();
+  res.send(data);
 });
 
 app.listen(PORT, () => console.log(`Hello! You are listening on port ${PORT}`));
