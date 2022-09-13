@@ -1,133 +1,151 @@
 import { useEffect, useState } from "react";
+import QuestionCard from "./questioncard";
 
-const Questions = ({ formValues }) => {
+const Questions = ({ values }) => {
   const [questions, setQuestions] = useState([]);
-  //   const [submitted, setSubmitted] = useState(false);
-  const [currQ, setCurrQ] = useState(0);
-  const [options, setOptions] = useState([]);
+  const [currentQ, setCurrentQ] = useState(1);
   const [answers, setAnswers] = useState([]);
-  const [correct, setCorrect] = useState([]);
-  const [atEnd, setAtEnd] = useState(false);
+  const [correctAns, setCorrectAns] = useState([]);
+  const [score, setScore] = useState("");
+  const [seeScore, setSeeScore] = useState(false);
+  const [records, setRecords] = useState([]);
+  const [seeRecord, setSeeRecord] = useState(false);
+  const [reset, setReset] = useState(false);
 
-  const randomize = (array, correct) => {
-    const arrCopy = [...array];
-    const randNum = Math.floor(Math.random() * array.length);
-    arrCopy.splice(
-      randNum,
-      0,
-      correct.split("&quot;").join('"').split("&#039;").join("'")
-    );
-    setOptions(arrCopy);
-  };
-
-  const loadData = () => {
-    const params = new URLSearchParams({
-      amount: formValues.numQ,
-      category: formValues.category,
-      difficulty: formValues.difficulty,
-      type: formValues.type,
-    });
-
-    fetch(`http://localhost:5000/api/questions?${params}`)
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data.results);
-        setQuestions(data.results);
-        console.log(data.results[currQ].incorrect_answers);
-        randomize(
-          data.results[currQ].incorrect_answers,
-          data.results[currQ].correct_answer
-        );
-      });
+  const makeNewRecord = (q, input, ans) => {
+    const newRec = {
+      question: q,
+      user: input,
+      actual: ans,
+    };
+    console.log(newRec);
+    setRecords((oldRecord) => [...oldRecord, newRec]);
   };
 
   useEffect(() => {
+    const loadData = async () => {
+      const params = new URLSearchParams({
+        amount: values.numQ,
+        category: values.category,
+        difficulty: values.difficulty,
+        type: values.type,
+      });
+
+      const response = await fetch(
+        `http://localhost:5000/api/questions?${params}`
+      );
+      const data = await response.json();
+      console.log(data.results);
+      setQuestions(data.results);
+    };
     loadData();
-    // setSubmitted(true);
-  }, [formValues, currQ, answers]);
+  }, [reset]);
+
+  const userAnswer = (answer) => {
+    setAnswers((oldAnswers) => [...oldAnswers, answer]);
+  };
+
+  const correctAnswer = (answer) => {
+    setCorrectAns((oldAnswers) => [...oldAnswers, answer]);
+  };
+
+  const calculateScore = (input, actual) => {
+    const difference = input.filter((val) => actual.includes(val));
+    setScore(difference.length);
+  };
 
   const handleClick = (e) => {
-    setCorrect((olderAnswers) => [
-      ...olderAnswers,
-      questions[currQ].correct_answer,
-    ]);
-    if (currQ + 1 === Number(formValues.numQ)) {
+    if (currentQ === questions.length) {
       console.log("end");
-      setAtEnd(true);
+      e.target.innerText = "Done!";
+      makeNewRecord(
+        questions[currentQ - 1].question,
+        answers[answers.length - 1],
+        correctAns[correctAns.length - 1]
+      );
+      calculateScore(answers, correctAns);
+      setSeeScore(true);
+    } else {
+      makeNewRecord(
+        questions[currentQ - 1].question,
+        answers[answers.length - 1],
+        correctAns[correctAns.length - 1]
+      );
+      setCurrentQ(currentQ + 1);
     }
-    setCurrQ(currQ + 1);
-    console.log(currQ, formValues.numQ);
-    setAnswers((olderAnswers) => [...olderAnswers, e.target.value]);
   };
 
-  const submitAnswers = () => {
-    console.log(answers);
-    console.log(correct);
+  const handleReset = () => {
+    setCurrentQ(1);
+    setAnswers([]);
+    setCorrectAns([]);
+    setScore("");
+    setSeeScore(false);
+    setRecords([]);
+    setSeeRecord(false);
+    setReset((reset) => !reset);
   };
 
-  if (!questions) {
-    return <>Loading...</>;
-  } else {
-    return (
-      <>
-        {questions.map((question, index) => {
-          if (index === currQ) {
-            return (
-              <div className="question">
-                <div className="description">
-                  <p>
-                    <strong>
-                      {question.category} Q#: {index + 1}/{formValues.numQ}
-                    </strong>
-                  </p>
-                </div>
-                <p>
-                  {question.question
-                    .split("&quot;")
-                    .join("'")
-                    .split("&#039;")
-                    .join('"')
-                    .split("&amp")
-                    .join("&")}
-                </p>
-                {options.map((option) => {
+  return (
+    <div>
+      <div className="question-numbers"></div>
+      {!seeScore ? (
+        <div className="container">
+          <div className="question-count">
+            <strong>
+              <span>Question {currentQ}</span>/{questions.length}
+            </strong>
+          </div>
+          {questions.map((question, index) => {
+            if (index + 1 === currentQ) {
+              return (
+                <QuestionCard
+                  key={index}
+                  question={question}
+                  userAnswer={userAnswer}
+                  correctAnswer={correctAnswer}
+                />
+              );
+            }
+          })}
+          <button style={{ backgroundColor: "gray" }} onClick={handleClick}>
+            Next!
+          </button>
+        </div>
+      ) : (
+        <>
+          <p>
+            <strong>Final Score: {score}</strong>
+          </p>
+          <button onClick={() => setSeeRecord(true)}>Check the Answers</button>
+          <button onClick={handleReset}>Restart</button>
+
+          {seeRecord ? (
+            <table>
+              <tr>
+                <th>Question Number</th>
+                <th>Your Answer</th>
+                <th>Right Answer</th>
+              </tr>
+              <tbody>
+                {records.map((record, index) => {
                   return (
-                    <button
-                      className="options"
-                      key={index}
-                      value={option
-                        .split("&quot;")
-                        .join("'")
-                        .split("&#039;")
-                        .join('"')
-                        .split("&amp")
-                        .join("&")}
-                      onClick={handleClick}
-                    >
-                      {option
-                        .split("&quot;")
-                        .join("'")
-                        .split("&#039;")
-                        .join('"')
-                        .split("&amp")
-                        .join("&")}
-                    </button>
+                    <tr key={index}>
+                      <td>{index + 1}</td>
+                      <td>{record.user}</td>
+                      <td>{record.actual}</td>
+                    </tr>
                   );
                 })}
-              </div>
-            );
-          }
-        })}
-        <button
-          style={{ display: atEnd ? "block" : "none" }}
-          className="done"
-          onClick={submitAnswers}
-        >
-          Done!
-        </button>
-      </>
-    );
-  }
+              </tbody>
+            </table>
+          ) : (
+            <></>
+          )}
+        </>
+      )}
+    </div>
+  );
 };
 
 export default Questions;

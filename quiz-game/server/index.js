@@ -22,6 +22,7 @@ app.get("/api/categories", (req, res) => {
 });
 
 app.get("/api/questions", async (req, res) => {
+  const paramsString = "category=${req.quer}"
   const params = new URLSearchParams({
     category: req.query.category,
     amount: req.query.amount,
@@ -29,6 +30,7 @@ app.get("/api/questions", async (req, res) => {
     type: req.query.type,
   });
   const url = `https://opentdb.com/api.php?${params}`;
+  // const url = "https://opentdb.com/api.php?amount=10";
   const response = await fetch(url);
   const data = await response.json();
   res.send(data);

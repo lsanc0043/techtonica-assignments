@@ -2,6 +2,7 @@ body {
   padding: 10%;
   display: flex;
   justify-content: center;
+  align-items: center;
   text-align: center;
   height: 100vh;
   background-image: url("https://wallpaperaccess.com/full/2384075.jpg");
@@ -9,33 +10,20 @@ body {
   background-size: cover;
 }
 
-.card {
+.container {
   display: flex;
   flex-direction: column;
   background-color: aliceblue;
-  opacity: 80%;
-  border-radius: 10%;
-  border: solid 1px black;
+  opacity: 70%;
+  border-radius: 20%;
+  border: solid 3px #2b6b71;
   justify-content: center;
   align-items: center;
-  width: 30vw;
-  height: 30vw;
+  padding: 5%;
 }
 
-.question {
-  display: flex;
-  flex-direction: column;
-  background-color: aliceblue;
-  opacity: 80%;
-  border-radius: 10%;
-  border: solid 1px black;
-  justify-content: center;
-  align-items: center;
-  padding: 10%;
-}
-
-.options {
-  background-color: #5b83cd; /* Green */
+button {
+  background-color: #2b6b71; /* Green */
   border: none;
   color: white;
   padding: 15px 32px;
@@ -48,8 +36,17 @@ body {
   width: 400px;
 }
 
-.options:hover {
+button:hover {
   opacity: 80%;
+}
+
+.disabled {
+  pointer-events: none;
+  cursor: not-allowed;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
 }
 
 .description {
@@ -61,4 +58,28 @@ body {
   margin-top: 10%;
   width: 300px;
   height: 150px;
+}
+
+table {
+  /* border: 2px solid forestgreen; */
+  margin-top: 20px;
+  width: 800px;
+  text-align: center;
+}
+  
+tr {
+  display:flex;
+  justify-content: space-around;
+  flex-direction: row;
+  font-size: 20px;
+  border-bottom: 1px solid black;
+}
+
+th {
+  text-align: center;
+}
+
+td {
+  width: 150px;
+  text-align: right;
 }
