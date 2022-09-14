@@ -4,7 +4,6 @@ body {
   justify-content: center;
   align-items: center;
   text-align: center;
-  height: 100vh;
   background-image: url("https://wallpaperaccess.com/full/2384075.jpg");
   background-repeat: no-repeat;
   background-size: cover;
@@ -19,11 +18,19 @@ body {
   border: solid 3px #2b6b71;
   justify-content: center;
   align-items: center;
-  padding: 5%;
+  padding: 2%;
+}
+
+.question-header, .question-text {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: -2%;
+  margin-bottom: 2%;
+  width: 75vw;
 }
 
 button {
-  background-color: #2b6b71; /* Green */
+  background-color: #2b6b71;
   border: none;
   color: white;
   padding: 15px 32px;
@@ -31,13 +38,20 @@ button {
   text-decoration: none;
   display: inline-block;  
   font-size: 16px;
-  margin: 4px 50px;
+  margin: 4px 20px;
   cursor: pointer;
   width: 400px;
 }
 
 button:hover {
   opacity: 80%;
+}
+
+.numbers {
+  width: 50px;
+  font-size: 16px;
+  padding: 15px;
+  margin: 5px;
 }
 
 .disabled {
@@ -62,9 +76,14 @@ button:hover {
 
 table {
   /* border: 2px solid forestgreen; */
+  background-color: aliceblue;
+  opacity: 70%;
+  border-radius: 10%;
+  border: solid 3px #2b6b71;
   margin-top: 20px;
   width: 800px;
   text-align: center;
+  padding: 2%;
 }
   
 tr {
@@ -82,4 +101,12 @@ th {
 td {
   width: 150px;
   text-align: right;
+}
+
+form {
+  text-align: left;
+}
+
+img {
+  width: 20px;
 }

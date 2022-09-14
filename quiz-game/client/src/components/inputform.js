@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 
 const Form = ({ wasSubmitted, formValues }) => {
-  const [categories, setCategories] = useState([]); // store the categories
+  // store the categories
+  const [categories, setCategories] = useState([]);
 
   const [values, setValues] = useState({
     // store all the form inputs
     category: "",
-    numQ: "",
+    numQ: "10",
     difficulty: "",
     type: "",
   });
@@ -31,6 +32,7 @@ const Form = ({ wasSubmitted, formValues }) => {
   };
 
   const handleSubmit = (e) => {
+    // send the data to the parent
     e.preventDefault();
     formValues(values);
     wasSubmitted(true);
@@ -39,13 +41,13 @@ const Form = ({ wasSubmitted, formValues }) => {
   return (
     <div className="container">
       <h1>Customize your Quiz!</h1>
-      <p>
-        Specify number, but you can leave all other field empty to randomize
-        category, difficulty, and type of question.
+      <p className="question-text">
+        You can leave all fields empty to randomize category, difficulty, and
+        type of question (default number of Q's is 10).
       </p>
       <form onSubmit={handleSubmit}>
         <label>
-          <strong>Select a Category:</strong>
+          <strong>Select a Category:</strong> <br />
           <select value={values.category} onChange={set("category")}>
             <option value="">--Pick a Category--</option>
             {categories.map((category, index) => {
@@ -57,7 +59,7 @@ const Form = ({ wasSubmitted, formValues }) => {
             })}
           </select>
         </label>
-        <br />
+        <br /> <br />
         <label htmlFor="numQ">
           <strong>How many questions? </strong>
         </label>
@@ -104,7 +106,7 @@ const Form = ({ wasSubmitted, formValues }) => {
         <label htmlFor="TF">
           <strong>True/False</strong>
         </label>{" "}
-        <br />
+        <br /> <br />
         <input type="submit" />
       </form>
     </div>

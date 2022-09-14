@@ -1,7 +1,13 @@
 import { useEffect, useState } from "react";
 
-const QuestionCard = ({ question, userAnswer, correctAnswer }) => {
-  const [options, setOptions] = useState([]);
+const QuestionCard = ({
+  question,
+  userAnswer,
+  correctAnswer,
+  current,
+  length,
+}) => {
+  const [options, setOptions] = useState([]); // entire list of answers including the correct answer
   const [selected, setSelected] = useState(false);
 
   function decodeHtml(html) {
@@ -11,15 +17,16 @@ const QuestionCard = ({ question, userAnswer, correctAnswer }) => {
   }
 
   const randomize = (array, correct) => {
-    const arrCopy = [...array];
-    const randNum = Math.floor(Math.random() * array.length);
-    arrCopy.splice(randNum, 0, correct);
-    return arrCopy;
+    const arrCopy = [...array]; // makes a copy of the incorrect answers
+    const randNum = Math.floor(Math.random() * array.length); // gives me a random number between 0 and the length of the incorrect ans
+    // splice(index, howmanyelementsiwanttodelete, whatireplacethedeletedpartswith)
+    arrCopy.splice(randNum, 0, correct); // insert the correct answer in a random position
+    return arrCopy; // return the completed list of answers
   };
 
   useEffect(() => {
-    setOptions(randomize(question.incorrect_answers, question.correct_answer));
-  }, [question]);
+    setOptions(randomize(question.incorrect_answers, question.correct_answer)); // grab all the rearranged anwers
+  }, [question]); // every time the question changes
 
   const handleClick = (e) => {
     if (e.target.value === decodeHtml(question.correct_answer)) {
@@ -33,25 +40,40 @@ const QuestionCard = ({ question, userAnswer, correctAnswer }) => {
   };
 
   return (
-    <div className="question-section">
-      <div className="question-text">
-        <strong>{decodeHtml(question.question)}</strong>
+    <>
+      <div className="question-section">
+        <div className="question-header">
+          <p>
+            <strong>
+              Category:{" "}
+              <span style={{ color: "blue" }}>{question.category}</span>
+            </strong>
+          </p>
+          <p>
+            <strong>
+              Question <span style={{ color: "red" }}>{current}</span>/{length}
+            </strong>
+          </p>
+        </div>
+        <div className="question-text">
+          <strong>{decodeHtml(question.question)}</strong>
+        </div>
+        <div className="answer-section">
+          {options.map((answer, index) => {
+            return (
+              <button
+                key={index}
+                className={selected ? "disabled options" : "options"}
+                value={decodeHtml(answer)}
+                onClick={handleClick}
+              >
+                {decodeHtml(answer)}
+              </button>
+            );
+          })}
+        </div>
       </div>
-      <div className="answer-section">
-        {options.map((answer, index) => {
-          return (
-            <button
-              key={index}
-              className={selected ? "disabled options" : "options"}
-              value={decodeHtml(answer)}
-              onClick={handleClick}
-            >
-              {decodeHtml(answer)}
-            </button>
-          );
-        })}
-      </div>
-    </div>
+    </>
   );
 };
 

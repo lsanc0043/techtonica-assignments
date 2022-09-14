@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import QuestionCard from "./questioncard";
 
-const Questions = ({ values }) => {
+const Questions = ({ wasReset, values }) => {
   const [questions, setQuestions] = useState([]);
   const [currentQ, setCurrentQ] = useState(1);
   const [answers, setAnswers] = useState([]);
@@ -18,7 +18,6 @@ const Questions = ({ values }) => {
       user: input,
       actual: ans,
     };
-    console.log(newRec);
     setRecords((oldRecord) => [...oldRecord, newRec]);
   };
 
@@ -35,10 +34,10 @@ const Questions = ({ values }) => {
         `http://localhost:5000/api/questions?${params}`
       );
       const data = await response.json();
-      console.log(data.results);
       setQuestions(data.results);
     };
     loadData();
+    // eslint-disable-next-line
   }, [reset]);
 
   const userAnswer = (answer) => {
@@ -56,8 +55,6 @@ const Questions = ({ values }) => {
 
   const handleClick = (e) => {
     if (currentQ === questions.length) {
-      console.log("end");
-      e.target.innerText = "Done!";
       makeNewRecord(
         questions[currentQ - 1].question,
         answers[answers.length - 1],
@@ -84,30 +81,30 @@ const Questions = ({ values }) => {
     setRecords([]);
     setSeeRecord(false);
     setReset((reset) => !reset);
+    // wasReset(false);
   };
 
   return (
-    <div>
-      <div className="question-numbers"></div>
+    <>
       {!seeScore ? (
         <div className="container">
-          <div className="question-count">
-            <strong>
-              <span>Question {currentQ}</span>/{questions.length}
-            </strong>
-          </div>
-          {questions.map((question, index) => {
-            if (index + 1 === currentQ) {
-              return (
-                <QuestionCard
-                  key={index}
-                  question={question}
-                  userAnswer={userAnswer}
-                  correctAnswer={correctAnswer}
-                />
-              );
-            }
-          })}
+          {
+            // eslint-disable-next-line
+            questions.map((question, index) => {
+              if (index + 1 === currentQ) {
+                return (
+                  <QuestionCard
+                    key={index}
+                    question={question}
+                    userAnswer={userAnswer}
+                    correctAnswer={correctAnswer}
+                    current={currentQ}
+                    length={questions.length}
+                  />
+                );
+              }
+            })
+          }
           <button style={{ backgroundColor: "gray" }} onClick={handleClick}>
             Next!
           </button>
@@ -122,17 +119,26 @@ const Questions = ({ values }) => {
 
           {seeRecord ? (
             <table>
-              <tr>
-                <th>Question Number</th>
-                <th>Your Answer</th>
-                <th>Right Answer</th>
-              </tr>
+              <thead>
+                <tr>
+                  <th>Question Number</th>
+                  <th>Your Answer</th>
+                  <th>Right Answer</th>
+                </tr>
+              </thead>
               <tbody>
                 {records.map((record, index) => {
                   return (
                     <tr key={index}>
                       <td>{index + 1}</td>
-                      <td>{record.user}</td>
+                      <td
+                        style={{
+                          color:
+                            record.user === record.actual ? "green" : "red",
+                        }}
+                      >
+                        {record.user}
+                      </td>
                       <td>{record.actual}</td>
                     </tr>
                   );
@@ -144,7 +150,7 @@ const Questions = ({ values }) => {
           )}
         </>
       )}
-    </div>
+    </>
   );
 };
 
