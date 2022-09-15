@@ -78,9 +78,9 @@ table {
   /* border: 2px solid forestgreen; */
   background-color: aliceblue;
   opacity: 70%;
-  border-radius: 10%;
   border: solid 3px #2b6b71;
   margin-top: 20px;
+  margin-left: 40px;
   width: 800px;
   text-align: center;
   padding: 2%;

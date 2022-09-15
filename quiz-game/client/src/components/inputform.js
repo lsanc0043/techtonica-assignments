@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const Form = ({ wasSubmitted, formValues }) => {
+const Form = ({ wasSubmitted, formValues, mode }) => {
   // store the categories
   const [categories, setCategories] = useState([]);
 
@@ -68,6 +68,7 @@ const Form = ({ wasSubmitted, formValues }) => {
           type="number"
           min="1"
           max="50"
+          placeholder="10"
           onChange={set("numQ")}
         />
         <br /> <br />
@@ -107,7 +108,19 @@ const Form = ({ wasSubmitted, formValues }) => {
           <strong>True/False</strong>
         </label>{" "}
         <br /> <br />
-        <input type="submit" />
+        <button type="submit">Create Quiz!</button>
+        <br />
+        <label>
+          <button
+            type="submit"
+            onClick={() => {
+              mode(true);
+            }}
+          >
+            Different Game Mode! <br />
+            Keep going until you get {values.numQ} questions right!
+          </button>
+        </label>
       </form>
     </div>
   );
