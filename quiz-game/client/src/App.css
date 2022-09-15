@@ -47,7 +47,7 @@ button:hover {
   opacity: 80%;
 }
 
-.numbers {
+.nums {
   width: 50px;
   font-size: 16px;
   padding: 15px;
@@ -107,6 +107,3 @@ form {
   text-align: left;
 }
 
-img {
-  width: 20px;
-}

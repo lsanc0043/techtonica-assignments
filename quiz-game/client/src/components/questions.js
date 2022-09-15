@@ -54,6 +54,7 @@ const Questions = ({ values, mode }) => {
   // callback function created to retrieve the user input from QuestionCard
   const userAnswer = (answer) => {
     if (answer) {
+      makeNewRecord(currentQ, answer, correctAns[correctAns.length - 1]);
       // if the answer is valid or received
       if (answers[currentQ] !== -1) {
         answers[currentQ] = answer;
@@ -62,7 +63,6 @@ const Questions = ({ values, mode }) => {
       }
       setAnsweredQs((oldAnswers) => [...oldAnswers, currentQ]); // add the index of the question that was answered
       remainingQs.splice(remainingQs.indexOf(currentQ), 1);
-      console.log(currentQ);
     }
   };
 
@@ -80,16 +80,12 @@ const Questions = ({ values, mode }) => {
 
   // handleclicks made to the Next button
   const handleClick = () => {
-    console.log(answeredQs);
-    console.log(remainingQs);
+    console.log(records);
     // if you've answered all the questions
     if (answeredQs.length === questions.length) {
-      // make a new record with the last question, the last user answer, and the last correct answer
-      makeNewRecord(
-        questions[currentQ - 1].question,
-        answers[answers.length - 1],
-        correctAns[correctAns.length - 1]
-      );
+      records.sort(function (a, b) {
+        return -(b.question - a.question);
+      });
       // if the new mode isn't selected, calculate score only at the end of the game
       if (!mode) {
         calculateScore(answers, correctAns);
@@ -97,34 +93,24 @@ const Questions = ({ values, mode }) => {
       // see the score at the end of the game, hide the actual game
       setSeeScore(true);
     } else {
-      // if you haven't answered all the questions
-      // push in an empty quote for unanswered questions
-      if (answers.length !== currentQ) {
-        answers.push("");
-      }
-      // make a new record with the last question, the last user answer, and the last correct answer
-      makeNewRecord(
-        questions[currentQ - 1].question,
-        answers[answers.length - 1],
-        correctAns[correctAns.length - 1]
-      );
       // if your calculated score is equal to the number of questions you want to get right
       if (calculateScore(answers, correctAns) === Number(values.numQ)) {
         setSeeScore(true); // see the score and end the game
       } else {
+        // make a new record with the last question, the last user answer, and the last correct answer
         if (
           !answeredQs.includes(currentQ + 1) &&
           currentQ < questions.length - 1
         ) {
-          console.log("next");
+          // console.log("next");
           setCurrentQ(currentQ + 1); // move to the next question
         } else {
-          console.log("nope");
+          // console.log("nope");
           const found = remainingQs.findIndex((val) => {
             return val > currentQ;
           });
-          console.log(found);
-          console.log(remainingQs[found === -1 ? 0 : found]);
+          // console.log(found);
+          // console.log(remainingQs[found === -1 ? 0 : found]);
           setCurrentQ(remainingQs[found === -1 ? 0 : found]);
         }
       }
@@ -143,7 +129,7 @@ const Questions = ({ values, mode }) => {
     setCorrectAns([]);
     setAnsweredQs([]);
     setRemainingQs([]);
-    setScore("");
+    setScore(0);
     setSeeScore(false);
     setRecords([]);
     setSeeRecord(false);
@@ -153,33 +139,53 @@ const Questions = ({ values, mode }) => {
   return (
     <>
       {!seeScore ? ( // if you aren't seeing the score or aren't at the end of the game
-        <div className="container">
-          {
-            // eslint-disable-next-line
-            questions.map((question, index) => {
-              if (index + 1 === currentQ) {
-                // if your index+1 (since your index starts at 0) is the same as the current question
-                return (
-                  <QuestionCard
-                    key={index}
-                    question={question}
-                    userAnswer={userAnswer} // callback function to retrieve user answer
-                    correctAnswer={correctAnswer} // callback function to retrieve correct answer
-                    current={currentQ}
-                    length={mode ? "?" : questions.length} // if different mode is selected, don't specify number of questions
-                  />
-                );
-              }
-            })
-          }
-          {/* {currentQ === questions.length ? (
+        <>
+          <div className="container">
+            {
+              // eslint-disable-next-line
+              questions.map((question, index) => {
+                if (index + 1 === currentQ) {
+                  // if your index+1 (since your index starts at 0) is the same as the current question
+                  return (
+                    <QuestionCard
+                      key={index}
+                      question={question}
+                      userAnswer={userAnswer} // callback function to retrieve user answer
+                      correctAnswer={correctAnswer} // callback function to retrieve correct answer
+                      current={currentQ}
+                      length={mode ? "?" : questions.length} // if different mode is selected, don't specify number of questions
+                    />
+                  );
+                }
+              })
+            }
+            {/* {currentQ === questions.length ? (
             <></>
           ) : ( */}
-          <button style={{ backgroundColor: "gray" }} onClick={handleClick}>
-            Next!
-          </button>
-          {/* )} */}
-        </div>
+            <button style={{ backgroundColor: "gray" }} onClick={handleClick}>
+              Next!
+            </button>
+            {/* )} */}
+          </div>
+          {!mode ? (
+            questions.map((question, index) => {
+              return (
+                <button
+                  key={question.question}
+                  onClick={handleSelection}
+                  value={index + 1}
+                  className={
+                    answeredQs.includes(index + 1) ? "disabled nums" : "nums"
+                  }
+                >
+                  {index + 1}
+                </button>
+              );
+            })
+          ) : (
+            <></>
+          )}
+        </>
       ) : (
         <>
           {mode ? ( // if different mode is selected
@@ -214,7 +220,7 @@ const Questions = ({ values, mode }) => {
                 {records.map((record, index) => {
                   return (
                     <tr key={index}>
-                      <td>{index + 1}</td>
+                      <td>{record.question}</td>
                       <td
                         style={{
                           color:
@@ -233,22 +239,6 @@ const Questions = ({ values, mode }) => {
             <></>
           )}
         </>
-      )}
-      {!mode ? (
-        questions.map((question, index) => {
-          return (
-            <button
-              key={question.question}
-              onClick={handleSelection}
-              value={index + 1}
-              className={answeredQs.includes(index + 1) ? "disabled" : ""}
-            >
-              {index + 1}
-            </button>
-          );
-        })
-      ) : (
-        <></>
       )}
     </>
   );
