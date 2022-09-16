@@ -14,11 +14,17 @@ const Questions = ({ values, mode }) => {
   const [answeredQs, setAnsweredQs] = useState([]); // stores the indexes of the question that's been answered - array
   const [remainingQs, setRemainingQs] = useState([]); // stores the remaining questions yet to be answered - array
 
+  function decodeHtml(html) {
+    var txt = document.createElement("textarea");
+    txt.innerHTML = html;
+    return txt.value;
+  }
   // create a new record to store in the records state array
-  const makeNewRecord = (q, input, ans) => {
+  const makeNewRecord = (num, q, input, ans) => {
     // takes three parameters
     const newRec = {
       // makes a new record as an object
+      number: num,
       question: q, // the question number
       user: input, // the user input
       actual: ans, // the correct answer
@@ -54,7 +60,12 @@ const Questions = ({ values, mode }) => {
   // callback function created to retrieve the user input from QuestionCard
   const userAnswer = (answer) => {
     if (answer) {
-      makeNewRecord(currentQ, answer, correctAns[correctAns.length - 1]);
+      makeNewRecord(
+        currentQ,
+        decodeHtml(questions[currentQ - 1].question),
+        answer,
+        correctAns[correctAns.length - 1]
+      );
       // if the answer is valid or received
       if (answers[currentQ] !== -1) {
         answers[currentQ] = answer;
@@ -62,7 +73,7 @@ const Questions = ({ values, mode }) => {
         setAnswers((oldAnswers) => [...oldAnswers, answer]); // add that answer to the end of the answers state array
       }
       setAnsweredQs((oldAnswers) => [...oldAnswers, currentQ]); // add the index of the question that was answered
-      remainingQs.splice(remainingQs.indexOf(currentQ), 1);
+      remainingQs.splice(remainingQs.indexOf(currentQ), 1); // remove the answered question from the remaining questions
     }
   };
 
@@ -97,21 +108,20 @@ const Questions = ({ values, mode }) => {
       if (calculateScore(answers, correctAns) === Number(values.numQ)) {
         setSeeScore(true); // see the score and end the game
       } else {
-        // make a new record with the last question, the last user answer, and the last correct answer
+        // if you're not done with the quiz and you haven't answered the next question yet
         if (
           !answeredQs.includes(currentQ + 1) &&
           currentQ < questions.length - 1
         ) {
-          // console.log("next");
           setCurrentQ(currentQ + 1); // move to the next question
         } else {
-          // console.log("nope");
+          // find the next value in the remaining questions that is bigger than your current question number
           const found = remainingQs.findIndex((val) => {
             return val > currentQ;
           });
           // console.log(found);
           // console.log(remainingQs[found === -1 ? 0 : found]);
-          setCurrentQ(remainingQs[found === -1 ? 0 : found]);
+          setCurrentQ(remainingQs[found === -1 ? 0 : found]); // set it to the next number if found, otherwise go to the first index
         }
       }
     }
@@ -159,23 +169,29 @@ const Questions = ({ values, mode }) => {
                 }
               })
             }
-            {/* {currentQ === questions.length ? (
-            <></>
-          ) : ( */}
             <button style={{ backgroundColor: "gray" }} onClick={handleClick}>
               Next!
             </button>
-            {/* )} */}
           </div>
-          {!mode ? (
+          {!mode ? ( // if not the different game mode
             questions.map((question, index) => {
+              // show all the questions as selectable boxes
               return (
                 <button
                   key={question.question}
                   onClick={handleSelection}
                   value={index + 1}
                   className={
-                    answeredQs.includes(index + 1) ? "disabled nums" : "nums"
+                    answeredQs.includes(index + 1)
+                      ? index + 1 === answeredQs[answeredQs.length - 1]
+                        ? records[records.length - 1].user ===
+                          records[records.length - 1].actual
+                          ? "disabled correct nums"
+                          : "disabled incorrect nums"
+                        : "disabled nums"
+                      : index + 1 === currentQ
+                      ? "selected nums"
+                      : "nums"
                   }
                 >
                   {index + 1}
@@ -212,6 +228,7 @@ const Questions = ({ values, mode }) => {
               <thead>
                 <tr>
                   <th>Question Number</th>
+                  <th>Question</th>
                   <th>Your Answer</th>
                   <th>Right Answer</th>
                 </tr>
@@ -220,6 +237,7 @@ const Questions = ({ values, mode }) => {
                 {records.map((record, index) => {
                   return (
                     <tr key={index}>
+                      <td>{record.number}</td>
                       <td>{record.question}</td>
                       <td
                         style={{

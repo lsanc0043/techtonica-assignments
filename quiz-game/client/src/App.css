@@ -63,15 +63,17 @@ button:hover {
   box-shadow: none;
 }
 
-.description {
-  display: flex;
-  justify-content: space-between;
+.selected {
+  border: solid 1px;
+  background-color: #7daaae;
 }
 
-.done {
-  margin-top: 10%;
-  width: 300px;
-  height: 150px;
+.correct {
+  background-color: rgb(77, 189, 77);
+}
+
+.incorrect {
+  background-color: rgb(218, 66, 66);
 }
 
 table {
