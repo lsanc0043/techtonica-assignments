@@ -1,12 +1,39 @@
-fieldset {
-  border: none;
-  margin: 1rem 0;
+body {
+  background: linear-gradient(rgb(53, 4, 53), rgba(94, 94, 205, 0.466));
+  /* height: 100vh; */
+  font-family: "Audiowide", sans-serif;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.App {
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1%;
+}
+
+h2 {
+  font-family: 'Bungee Spice', cursive;
+  text-shadow: -2px 2px rgb(0, 0, 0);
+  padding: 1%;
+  background-color: rgba(255, 255, 255, 0.768);
+  border-radius: 15%;
+}
+
+h3 {
+  background: -webkit-linear-gradient(rgb(0, 0, 0), rgb(93, 18, 18));
+  background-clip: border-box;
+  -webkit-background-clip: text;
+  -webkit-text-stroke:1px rgb(255, 255, 255);
+  -webkit-text-fill-color: transparent;
 }
 
 header {
-  /* For more about flexbox, see https://css-tricks.com/snippets/css/a-guide-to-flexbox/ */
   display: flex;
   align-items: center;
+  font-family: 'Nabla', cursive;
+  text-shadow: -2px 2px rgb(186, 101, 233);
 }
 
 header img {
@@ -14,17 +41,35 @@ header img {
   margin-right: 1em;
 }
 
-main {
+.user-and-events {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.user-management {
+  width: 50vw;
+  padding: 2%;
+}
+
+button {
+  border: none;
+  background-color: white;
+}
+
+form {
+  padding: 1%;
+}
+
+.card-header {
   display: flex;
   justify-content: space-between;
 }
 
-aside {
-  margin-left: 2em;
+table {
+  text-align: center;
 }
 
-footer {
-  margin-top: 1rem;
-  font-size: small;
-  color: gray;
+.fa {
+  color: red;
 }

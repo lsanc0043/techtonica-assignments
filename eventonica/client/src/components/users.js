@@ -1,81 +1,53 @@
-import { useState } from "react";
-import DeleteUser from "./deleteUser";
-const marlin = { name: "Marlin", email: "marlin@gmail.com", id: "1" };
-const nemo = { name: "Nemo", email: "nemo@gmail.com", id: "2" };
-const dory = { name: "Dory", email: "dory@gmail.com", id: "3" };
+import { useState, useEffect } from "react";
+// import DeleteUser from "./DeleteUser";
+import UserTable from "./UserTable";
 
 const UserManagement = () => {
-  const [users, setUsers] = useState([marlin, nemo, dory]);
-  const [newUser, setNewUser] = useState({ name: "", email: "", id: "" });
+  const [users, setUsers] = useState([]);
+  const [searchInput, setSearchInput] = useState("");
 
-  const set = (input) => {
-    return ({ target: { value } }) => {
-      setNewUser((originalValues) => ({
-        ...originalValues,
-        [input]: value,
-      }));
-    };
+  const getUsers = async () => {
+    const response = await fetch("http://localhost:4000/users");
+    const data = await response.json();
+    setUsers(data);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(newUser);
-    setUsers([...users, newUser]);
-    setNewUser({ name: "", email: "", id: "" });
-  };
+  useEffect(() => {
+    getUsers();
+  }, [users]);
 
-  const deleteUser = (deleteId) => {
-    const newUsers = users.filter((i) => i.id !== deleteId);
-    setUsers(newUsers);
+  const deleteUser = async (deleteId) => {
+    let response = await fetch(`http://localhost:4000/users/${deleteId}`, {
+      method: "DELETE",
+    });
+    await response.json();
+
+    const deleteUsers = users.filter((user) => user.id !== deleteId);
+    console.log(deleteUsers);
+    setUsers(deleteUsers);
   };
 
   return (
     <section className="user-management">
       <h2>User Management</h2>
-
-      <ul id="users-list">
-        {/* display all existing Users here */}
-        {users.map((user, index) => {
-          return (
-            <li key={index}>
-              Name: {user.name}, E-mail: {user.email}
-            </li>
-          );
-        })}
-      </ul>
-
-      <div>
-        <h3>Add User</h3>
-        <form id="add-user" action="#" onSubmit={handleSubmit}>
-          <fieldset>
-            <label>Name</label>
+      <h3>All Users</h3>
+      <div className="card">
+        <div className="card-header">
+          Users
+          <span>
             <input
               type="text"
-              id="add-user-name"
-              value={newUser.name}
-              onChange={set("name")}
+              placeholder="Search by name.."
+              onChange={(e) => setSearchInput(e.target.value)}
             />
-            <label>E-mail</label>
-            <input
-              type="text"
-              id="add-user-email"
-              value={newUser.email}
-              onChange={set("email")}
-            />
-            <label>Id</label>
-            <input
-              type="text"
-              id="add-user-id"
-              value={newUser.id}
-              onChange={set("id")}
-            />
-          </fieldset>
-          {/* Add more form fields here */}
-          <input type="submit" value="Add" />
-        </form>
+          </span>
+        </div>
+        <UserTable
+          users={users}
+          deleteUser={deleteUser}
+          searchInput={searchInput}
+        />
       </div>
-
-      <DeleteUser deleteUser={deleteUser} />
     </section>
   );
 };
