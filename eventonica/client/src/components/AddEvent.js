@@ -99,6 +99,7 @@ const AddEvent = ({ events }) => {
       <td>
         <input type="submit" value="Add" onClick={handleSubmit} />
       </td>
+      <td></td>
     </tr>
   );
 };

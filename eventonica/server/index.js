@@ -26,15 +26,33 @@ app.get("/users", async function (req, res, next) {
   }
 });
 
+app.get("/users/sortedId", async function (req, res, next) {
+  try {
+    const users = await db.any("SELECT * FROM users ORDER BY id", [true]);
+    res.send(users);
+  } catch (e) {
+    return res.status(400).json({ e });
+  }
+});
+
+app.get("/users/sortedName", async function (req, res, next) {
+  try {
+    const users = await db.any("SELECT * FROM users ORDER BY name", [true]);
+    res.send(users);
+  } catch (e) {
+    return res.status(400).json({ e });
+  }
+});
+
 app.post("/users", async (req, res) => {
   const user = {
     name: req.body.name,
     email: req.body.email,
   };
-  console.log(user);
+  console.log("post", user);
   try {
     const users = await db.any("SELECT * FROM users", [true]);
-    console.log(users);
+    console.log("database", users);
     if (users.length === 0) {
       db.any("ALTER SEQUENCE users_id_seq RESTART WITH 1");
     }
@@ -42,8 +60,29 @@ app.post("/users", async (req, res) => {
       "INSERT INTO users(name, email) VALUES($1, $2) RETURNING *",
       [user.name, user.email]
     );
-    console.log(createdUser);
+    console.log("createdUser, post", createdUser);
     res.send(createdUser);
+  } catch (e) {
+    return res.status(400).json({ e });
+  }
+});
+
+app.put("/users/:id", async (req, res) => {
+  // : acts as a placeholder
+  const userId = req.params.id;
+  console.log(userId);
+  const user = {
+    name: req.body.name,
+    email: req.body.email,
+  };
+  console.log("put", user);
+  try {
+    await db.many("UPDATE users SET name=$1, email=$2 WHERE id=$3", [
+      user.name,
+      user.email,
+      userId,
+    ]);
+    res.send({ status: "success" });
   } catch (e) {
     return res.status(400).json({ e });
   }
@@ -69,6 +108,44 @@ app.delete("/users/:id", async (req, res) => {
 app.get("/events", async function (req, res, next) {
   try {
     const events = await db.any("SELECT * FROM events", [true]);
+    res.send(events);
+  } catch (e) {
+    return res.status(400).json({ e });
+  }
+});
+
+app.get("/events/sortedId", async function (req, res, next) {
+  try {
+    const events = await db.any("SELECT * FROM events ORDER BY id", [true]);
+    res.send(events);
+  } catch (e) {
+    return res.status(400).json({ e });
+  }
+});
+
+app.get("/events/sortedDate", async function (req, res, next) {
+  try {
+    const events = await db.any("SELECT * FROM events ORDER BY date", [true]);
+    res.send(events);
+  } catch (e) {
+    return res.status(400).json({ e });
+  }
+});
+
+app.get("/events/sortedName", async function (req, res, next) {
+  try {
+    const events = await db.any("SELECT * FROM events ORDER BY name", [true]);
+    res.send(events);
+  } catch (e) {
+    return res.status(400).json({ e });
+  }
+});
+
+app.get("/events/sortedCategory", async function (req, res, next) {
+  try {
+    const events = await db.any("SELECT * FROM events ORDER BY category", [
+      true,
+    ]);
     res.send(events);
   } catch (e) {
     return res.status(400).json({ e });

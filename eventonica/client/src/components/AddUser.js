@@ -52,6 +52,7 @@ const AddUser = ({ users }) => {
       <td>
         <input type="submit" value="Add" onClick={handleSubmit} />
       </td>
+      <td></td>
     </tr>
   );
 };

@@ -1,11 +1,56 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import AddEvent from "./AddEvent";
 
-const EventTable = ({ events, deleteEvent, searchInput }) => {
+const EventTable = ({
+  events,
+  deleteEvent,
+  searchInput,
+  field,
+  dataToEvent,
+  username,
+}) => {
   const [favorited, setFavorited] = useState([]);
-  const filtered = events.filter((event) =>
-    event.name.toLowerCase().includes(searchInput)
-  );
+  // eslint-disable-next-line
+  const [userFav, setUserFav] = useState({});
+  // eslint-disable-next-line
+  const [posUsers, setPosUsers] = useState([]);
+
+  const checkExists = () => {
+    if (username !== "") {
+      if (!posUsers.includes(username)) {
+        posUsers.push(username);
+        setFavorited([]);
+        dataToEvent(null);
+
+        console.log(favorited, "not there");
+      } else {
+        setFavorited(userFav[username]);
+        console.log(favorited, userFav, "is there");
+        dataToEvent(userFav);
+      }
+    }
+  };
+
+  useEffect(() => {
+    checkExists();
+    // eslint-disable-next-line
+  }, [username]);
+
+  const filtered = events.filter((event) => {
+    switch (field) {
+      case "name":
+        return event.name.toLowerCase().includes(searchInput.toLowerCase());
+      case "date":
+        return event.date.includes(searchInput.toLowerCase());
+      case "category":
+        return event.category.toLowerCase().includes(searchInput.toLowerCase());
+      case "":
+        return event;
+      default:
+        // eslint-disable-next-line
+        return;
+    }
+  });
 
   const handleClick = (e) => {
     console.log(e.currentTarget.value);
@@ -13,15 +58,22 @@ const EventTable = ({ events, deleteEvent, searchInput }) => {
   };
 
   const handleFavorite = (e) => {
-    console.log(e.currentTarget.value);
+    userFav[username] = [];
     const value = Number(e.currentTarget.value);
     if (favorited.includes(value)) {
-      console.log("already there");
       const deleteFavorite = favorited.filter((val) => val !== value);
-      console.log(deleteFavorite);
       setFavorited(deleteFavorite);
+      userFav[username] = deleteFavorite;
+      // setFav(deleteFavorite);
+      console.log(userFav);
+      dataToEvent(userFav);
+    } else {
+      favorited.push(value);
+      userFav[username] = favorited;
+      // setFav(favorited);
+      console.log(userFav);
+      dataToEvent(userFav);
     }
-    favorited.push(value);
   };
 
   return (
