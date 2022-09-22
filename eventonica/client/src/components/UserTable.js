@@ -70,6 +70,7 @@ const UserTable = ({
     });
     await response.json();
     editArr.splice(editArr.indexOf(Number(e.target.id)));
+    setNewUser({ name: "", email: "" });
   };
 
   if (submitted) {
@@ -173,7 +174,7 @@ const UserTable = ({
                         style={{
                           display: editArr.includes(user.id) ? "block" : "none",
                         }}
-                        value="Add"
+                        value="Edit"
                         id={user.id}
                         onClick={handlePut}
                       />

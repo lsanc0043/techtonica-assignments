@@ -19,7 +19,7 @@ app.use(bodyParser.json());
 
 app.get("/users", async function (req, res, next) {
   try {
-    const users = await db.any("SELECT * FROM users", [true]);
+    const users = await db.any("SELECT * FROM users ORDER BY id", [true]);
     res.send(users);
   } catch (e) {
     return res.status(400).json({ e });
@@ -107,7 +107,7 @@ app.delete("/users/:id", async (req, res) => {
 
 app.get("/events", async function (req, res, next) {
   try {
-    const events = await db.any("SELECT * FROM events", [true]);
+    const events = await db.any("SELECT * FROM events ORDER BY id", [true]);
     res.send(events);
   } catch (e) {
     return res.status(400).json({ e });
