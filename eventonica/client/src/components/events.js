@@ -15,6 +15,7 @@ const EventManagement = ({ username, dataToApp }) => {
 
   useEffect(() => {
     getEvents(sort);
+    // eslint-disable-next-line
   }, [events]);
 
   const deleteEvent = async (deleteId) => {
