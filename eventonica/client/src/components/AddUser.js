@@ -1,31 +1,37 @@
-import { useState } from "react";
+// Note: will be capitalizing the comments for crucial and necessary lines of code or functions, CTRL+F and type !!  to find
+import { useState } from "react"; // !! IMPORT useState TO CREATE AND UPDATE STATES
 
-const AddUser = ({ users }) => {
-  const [newUser, setNewUser] = useState({ name: "", email: "" });
+const AddUser = ({ users }) => { // !! ACCEPTS THE LIST OF USERS AS PROPS
+  const [newUser, setNewUser] = useState({ name: "", email: "" }); // !! STORE THE NEW USER, INITIALIZE EMPTY NAME AND EMAIL
 
+  // !! SET FUNCTION, compresses setId, setName, and setEmail into one function
   const set = (input) => {
     return ({ target: { value } }) => {
+      // can't use e.target.value because we're taking input as a parameter
       setNewUser((originalValues) => ({
+        // keep original values of newUser, only change what the [input] is
         ...originalValues,
         [input]: value,
       }));
     };
   };
 
+  // !! POST REQUEST TO CONNECT TO BACKEND
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault(); // won't refresh page
     console.log(newUser);
     const rawResponse = await fetch("http://localhost:4000/users", {
-      method: "POST",
+      // fetch request made to this url
+      method: "POST", // POST method
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(newUser),
+      body: JSON.stringify(newUser), // converts newUser to a JSON
     });
-    const content = await rawResponse.json();
-    users.push(content);
-    setNewUser({ name: "", email: "" });
+    const content = await rawResponse.json(); // converts response to a JSON
+    users.push(content); // add the inputted new user information to the list of users
+    setNewUser({ name: "", email: "" }); // reset the newUser fields so we can add more
   };
   return (
     <tr>

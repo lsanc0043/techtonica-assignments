@@ -1,4 +1,4 @@
-import calendar from "../calendar.png";
+import calendar from "../calendar.png"; // import local calendar png file
 
 const Header = () => {
   return (
