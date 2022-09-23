@@ -1,0 +1,126 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Users matches the snapshot 1`] = `
+<section
+  className="user-management"
+>
+  <h2>
+    User Management
+  </h2>
+  <h3>
+    All Users
+  </h3>
+  <div
+    className="card"
+  >
+    <div
+      className="card-header"
+    >
+      Users
+      <button
+        onClick={[Function]}
+        style={
+          Object {
+            "border": "solid",
+          }
+        }
+      >
+        Sort By Id
+      </button>
+      <button
+        onClick={[Function]}
+        style={
+          Object {
+            "border": "solid",
+          }
+        }
+      >
+        Sort By Name
+      </button>
+      <span>
+        <input
+          onChange={[Function]}
+          placeholder="Search by name.."
+          type="text"
+        />
+      </span>
+    </div>
+    <form
+      onSubmit={[Function]}
+    >
+      <label>
+        Who are you?
+      </label>
+       
+      <br />
+      <input
+        onChange={[Function]}
+        placeholder="Login with Name"
+      />
+      <input
+        type="submit"
+      />
+    </form>
+    <p
+      style={
+        Object {
+          "display": "none",
+        }
+      }
+    >
+      Account does not exist.
+    </p>
+    <table
+      className="table"
+    >
+      <thead>
+        <tr>
+          <th />
+          <th>
+            Id
+          </th>
+          <th>
+            Name
+          </th>
+          <th>
+            E-mail
+          </th>
+          <th />
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td />
+          <td />
+          <td>
+            <input
+              id="add-user-name"
+              name="name"
+              onChange={[Function]}
+              type="text"
+              value=""
+            />
+          </td>
+          <td>
+            <input
+              id="add-user-email"
+              name="email"
+              onChange={[Function]}
+              type="text"
+              value=""
+            />
+          </td>
+          <td>
+            <input
+              onClick={[Function]}
+              type="submit"
+              value="Add"
+            />
+          </td>
+          <td />
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+`;
